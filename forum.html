@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="rookie-hub.html" class="nav-link">Rookie Hub</a>
+                    <a href="forum.html" class="nav-link active">Forum</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+                <div class="auth-btns">
+                    <a href="auth.html" class="btn btn-outline">Log In</a>
+                    <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section class="section-padding">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                    <h1 style="font-size: 2.5rem;">Community Forum</h1>
+                    <button id="openPostModal" class="btn btn-primary">+ Ask a Question</button>
+
+                </div>
+
+                <div style="position: relative; margin-bottom: 3rem;">
+                    <input type="text"
+                        style="width: 100%; padding: 1.2rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;"
+                        placeholder="Search for questions, tags, or topics...">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 280px 1fr; gap: 3rem;">
+                    <!-- Sidebar -->
+                    <aside>
+                        <div class="card" style="padding: 1.5rem;">
+                            <h3
+                                style="margin-bottom: 1.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">
+                                Categories</h3>
+                            <ul style="list-style: none;">
+                                <li class="category-btn active"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; background: #eff6ff; color: var(--primary); font-weight: 600; margin-bottom: 0.25rem; cursor: pointer;">
+                                    All Topics</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Robot Design & Build</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Programming (Blocks / Java)</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Debugging & Help</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Game Strategy</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Rules & Inspection</li>
+                                <li class="category-btn"
+                                    style="padding: 0.6rem 0.75rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; margin-bottom: 0.25rem; transition: var(--transition); cursor: pointer;"
+                                    onmouseover="this.style.background='var(--surface-hover)'"
+                                    onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                                    Outreach & Judging</li>
+                            </ul>
+                        </div>
+
+                        <div class="card"
+                            style="padding: 1.5rem; margin-top: 1.5rem; background: #ecfdf5; border: 1px solid #d1fae5;">
+                            <h3 style="margin-bottom: 0.75rem; font-size: 0.9rem; color: #065f46;">Pro Tip</h3>
+                            <p style="font-size: 0.85rem; color: #065f46; opacity: 0.8;">Use the [ROOKIE] tag to get
+                                priority help from experienced mentors!</p>
+                        </div>
+                    </aside>
+
+                    <!-- Feed -->
+                    <div class="forum-feed" id="forumFeed">
+                        <!-- Placeholder for empty feed -->
+                        <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                            <div style="font-size: 3rem; margin-bottom: 1.5rem;">📣</div>
+                            <h3 style="margin-bottom: 0.5rem;">No posts yet!</h3>
+                            <p style="color: var(--text-muted);">Be the first to ask a question in this category.</p>
+                            <button id="startDiscussionBtn" class="btn btn-primary" style="margin-top: 2rem;">+ Start a
+                                Discussion</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Post Modal -->
+        <div id="postModal" class="modal"
+            style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px);">
+            <div class="modal-content card"
+                style="background-color: white; margin: 10% auto; padding: 2.5rem; width: 90%; max-width: 600px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem;">Create a New Discussion</h2>
+                    <span id="closeModal"
+                        style="color: var(--text-muted); font-size: 2rem; font-weight: bold; cursor: pointer;">&times;</span>
+                </div>
+                <form id="newPostForm">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="postTitle"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Title</label>
+                        <input type="text" id="postTitle" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm);"
+                            placeholder="e.g. How to use encoders?">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="postCategory"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Category</label>
+                        <select id="postCategory" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: white;">
+                            <option value="Robot Design & Build">Robot Design & Build</option>
+                            <option value="Programming (Blocks / Java)">Programming (Blocks / Java)</option>
+                            <option value="Debugging & Help">Debugging & Help</option>
+                            <option value="Game Strategy">Game Strategy</option>
+                            <option value="Rules & Inspection">Rules & Inspection</option>
+                            <option value="Outreach & Judging">Outreach & Judging</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label for="postContent"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Content</label>
+                        <textarea id="postContent" required rows="5"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: inherit;"
+                            placeholder="Describe your question or topic in detail..."></textarea>
+                    </div>
+                    <div style="text-align: right;">
+                        <button type="button" id="cancelPost" class="btn btn-outline"
+                            style="margin-right: 1rem;">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Post to Community</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="logo">The <span>FTC Rookie</span> Hub</h2>
+                    <p>A safe, welcoming space for the next generation of FTC engineers.</p>
+                    <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                            target="_blank">Dragon Warriors</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="rookie-hub.html">Rookie Hub</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="build-logs.html">Build Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="competition.html">Survival Guide</a></li>
+                        <li><a href="#">Official FTC Site</a></li>
+                        <li><a href="#">Game Manuals</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Designed and Built with ⚙️ by the <a
+                        href="https://ftcdragonwarriors.github.io/website/" target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
