@@ -62,41 +62,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Global Auth Listener ---
     if (auth) {
-        auth.onAuthStateChanged(async (user) => {
-            const authBtns = document.querySelector('.auth-btns');
-            const navLinks = document.querySelector('.nav-links');
+        try {
+            auth.onAuthStateChanged(async (user) => {
+                const authBtns = document.querySelector('.auth-btns');
+                const navLinks = document.querySelector('.nav-links');
 
-            if (user) {
-                console.log("User logged in:", user.email);
-                // Fetch additional user data (like Team Name) from Firestore
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                const userData = userDoc.exists ? userDoc.data() : null;
-                const teamName = userData ? userData.teamName : "Rookie Hub User";
+                if (user) {
+                    console.log("User logged in:", user.email);
+                    // Fetch additional user data (like Team Name) from Firestore
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    const userData = userDoc.exists ? userDoc.data() : null;
+                    const teamName = userData ? userData.teamName : "Rookie Hub User";
 
-                // Update Header UI
-                if (authBtns) {
-                    authBtns.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <span style="font-size: 0.9rem; font-weight: 500;">Hi, ${teamName}</span>
-                            <button id="logoutBtn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Log Out</button>
-                        </div>
-                    `;
-                    document.getElementById('logoutBtn').addEventListener('click', () => {
-                        auth.signOut().then(() => {
-                            window.location.href = 'index.html';
+                    // Update Header UI
+                    if (authBtns) {
+                        authBtns.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span style="font-size: 0.9rem; font-weight: 500;">Hi, ${teamName}</span>
+                                <button id="logoutBtn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Log Out</button>
+                            </div>
+                        `;
+                        document.getElementById('logoutBtn').addEventListener('click', () => {
+                            auth.signOut().then(() => {
+                                window.location.href = 'index.html';
+                            });
                         });
-                    });
+                    }
+                } else {
+                    console.log("No user logged in");
+                    if (authBtns) {
+                        authBtns.innerHTML = `
+                            <a href="auth.html" class="btn btn-outline">Log In</a>
+                            <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                        `;
+                    }
                 }
-            } else {
-                console.log("No user logged in");
-                if (authBtns) {
-                    authBtns.innerHTML = `
-                        <a href="auth.html" class="btn btn-outline">Log In</a>
-                        <a href="auth.html" class="btn btn-primary">Sign Up</a>
-                    `;
-                }
-            }
-        });
+            });
+        } catch (error) {
+            console.warn("Auth listener error (this is okay if auth is not enabled):", error.message);
+            // Auth not configured - that's fine, anonymous posting still works
+        }
     }
 
     // --- Auth Form Logic (auth.html) ---
