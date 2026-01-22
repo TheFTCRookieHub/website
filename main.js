@@ -154,14 +154,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const forumFeed = document.getElementById('forumFeed');
 
     const toggleModal = (show) => {
-        if (!auth?.currentUser && show) {
-            alert("Please log in to start a discussion!");
-            window.location.href = 'auth.html';
-            return;
-        }
+        // Removed auth check to allow anonymous posting
         if (postModal) postModal.style.display = show ? 'block' : 'none';
         if (show) document.body.style.overflow = 'hidden';
         else document.body.style.overflow = 'auto';
+
+        // Pre-fill name if logged in
+        if (show && auth?.currentUser) {
+            const nameInput = document.getElementById('postAuthor');
+            if (nameInput && !nameInput.value) {
+                // We'll try to fetch it if we don't have it locally, but for now just leave it open or user can type
+                // Optimistically we could check our local user data if we stored it globally, but for now let's just let them type
+                // or if we really wanted, we could do a quick lookup here, but might be overkill.
+                // Let's just focus on the anonymous toggle logic below.
+            }
+        }
     };
 
     if (openPostModal) openPostModal.addEventListener('click', () => toggleModal(true));
@@ -245,30 +252,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Anonymous Checkbox Logic
+    const postAnonymous = document.getElementById('postAnonymous');
+    const postAuthorInput = document.getElementById('postAuthor');
+
+    if (postAnonymous && postAuthorInput) {
+        postAnonymous.addEventListener('change', () => {
+            if (postAnonymous.checked) {
+                postAuthorInput.value = '';
+                postAuthorInput.disabled = true;
+                postAuthorInput.placeholder = 'Posting as Anonymous';
+            } else {
+                postAuthorInput.disabled = false;
+                postAuthorInput.placeholder = 'e.g. Team 12345 or John Doe';
+            }
+        });
+    }
+
     if (newPostForm) {
         newPostForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            if (!db || !auth.currentUser) {
-                alert("Please log in to post!");
-                return;
-            }
+            // Removed login check
+            // if (!db || !auth.currentUser) ...
 
             const title = document.getElementById('postTitle').value;
             const category = document.getElementById('postCategory').value;
             const content = document.getElementById('postContent').value;
+            const isAnonymous = document.getElementById('postAnonymous').checked;
+
+            let author = "Anonymous";
+            if (!isAnonymous) {
+                author = document.getElementById('postAuthor').value.trim();
+                if (!author) {
+                    alert("Please enter your name/team name or select 'Post Anonymously'.");
+                    return;
+                }
+            }
 
             try {
-                // Fetch current user's team name
-                const userDoc = await db.collection('users').doc(auth.currentUser.uid).get();
-                const author = userDoc.exists ? userDoc.data().teamName : "Rookie Hub User";
+                // Use current user UID if available, otherwise null
+                const uid = auth.currentUser ? auth.currentUser.uid : null;
 
                 await db.collection('posts').add({
                     title,
                     category,
                     content,
                     author,
-                    uid: auth.currentUser.uid,
+                    uid: uid, // Can be null now
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
