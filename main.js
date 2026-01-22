@@ -197,8 +197,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderPost = (post) => {
         const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+
+        // Check if user can delete this post
+        let canDelete = false;
+        if (auth?.currentUser && post.uid === auth.currentUser.uid) {
+            // Logged-in user created this post
+            canDelete = true;
+        } else if (!auth?.currentUser || !post.uid) {
+            // Check if this post was created in current session
+            const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
+            canDelete = myPosts.includes(post.id);
+        }
+
+        const deleteButton = canDelete ? `
+            <button onclick="deletePost('${post.id}')" 
+                style="background: none; border: none; color: #dc2626; cursor: pointer; font-size: 1.2rem; padding: 0.25rem 0.5rem; transition: opacity 0.2s;"
+                onmouseover="this.style.opacity='0.7'" 
+                onmouseout="this.style.opacity='1'"
+                title="Delete post">
+                🗑️
+            </button>
+        ` : '';
+
         return `
-            <div class="card animate-fade-in" style="margin-bottom: 1.5rem; padding: 2rem; border-left: 4px solid var(--primary);">
+            <div class="card animate-fade-in" style="margin-bottom: 1.5rem; padding: 2rem; border-left: 4px solid var(--primary); position: relative;">
+                ${deleteButton ? `<div style="position: absolute; top: 1rem; right: 1rem;">${deleteButton}</div>` : ''}
                 <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem;">
                     <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--surface-hover); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">
                         ${post.author ? post.author[0].toUpperCase() : 'R'}
@@ -225,6 +248,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+    };
+
+    // Delete post function (global scope for onclick handler)
+    window.deletePost = async (postId) => {
+        if (!confirm('Are you sure you want to delete this post?')) {
+            return;
+        }
+
+        try {
+            await db.collection('posts').doc(postId).delete();
+
+            // Remove from sessionStorage if it exists
+            const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
+            const updatedPosts = myPosts.filter(id => id !== postId);
+            sessionStorage.setItem('myPosts', JSON.stringify(updatedPosts));
+
+            console.log('Post deleted successfully');
+        } catch (err) {
+            console.error('Error deleting post:', err);
+            alert('Failed to delete post. Please try again.');
+        }
     };
 
     const listenForPosts = () => {
@@ -294,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Use current user UID if available, otherwise null
                 const uid = auth.currentUser ? auth.currentUser.uid : null;
 
-                await db.collection('posts').add({
+                const docRef = await db.collection('posts').add({
                     title,
                     category,
                     content,
@@ -302,6 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     uid: uid, // Can be null now
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
+
+                // Track this post in sessionStorage if not logged in
+                if (!uid) {
+                    const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
+                    myPosts.push(docRef.id);
+                    sessionStorage.setItem('myPosts', JSON.stringify(myPosts));
+                }
 
                 newPostForm.reset();
                 toggleModal(false);
