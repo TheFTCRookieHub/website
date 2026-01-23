@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Updated Header scroll effect for Light Theme
+    // Header scroll effect
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
@@ -30,124 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Auth Toggling (Login vs Sign Up)
-    const loginTab = document.getElementById('loginTab');
-    const signupTab = document.getElementById('signupTab');
-    const authBtn = document.getElementById('authBtn');
-    const teamGroup = document.getElementById('teamGroup');
-    const confirmGroup = document.getElementById('confirmGroup');
-
-    if (loginTab && signupTab) {
-        loginTab.addEventListener('click', () => {
-            loginTab.classList.add('active');
-            signupTab.classList.remove('active');
-            teamGroup.style.display = 'none';
-            confirmGroup.style.display = 'none';
-            authBtn.textContent = 'Continue to the Hub';
-        });
-
-        signupTab.addEventListener('click', () => {
-            signupTab.classList.add('active');
-            loginTab.classList.remove('active');
-            teamGroup.style.display = 'block';
-            confirmGroup.style.display = 'block';
-            authBtn.textContent = 'Create My Account';
-        });
-    }
-
-
-    // Firebase Integration
+    // Firebase Integration (Firestore only)
     const db = (typeof firebase !== 'undefined' && firebase.apps.length > 0) ? firebase.firestore() : null;
-    const auth = (typeof firebase !== 'undefined' && firebase.apps.length > 0) ? firebase.auth() : null;
-
-    // --- Global Auth Listener ---
-    if (auth) {
-        try {
-            auth.onAuthStateChanged(async (user) => {
-                const authBtns = document.querySelector('.auth-btns');
-                const navLinks = document.querySelector('.nav-links');
-
-                if (user) {
-                    console.log("User logged in:", user.email);
-                    // Fetch additional user data (like Team Name) from Firestore
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    const userData = userDoc.exists ? userDoc.data() : null;
-                    const teamName = userData ? userData.teamName : "Rookie Hub User";
-
-                    // Update Header UI
-                    if (authBtns) {
-                        authBtns.innerHTML = `
-                            <div style="display: flex; align-items: center; gap: 1rem;">
-                                <span style="font-size: 0.9rem; font-weight: 500;">Hi, ${teamName}</span>
-                                <button id="logoutBtn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Log Out</button>
-                            </div>
-                        `;
-                        document.getElementById('logoutBtn').addEventListener('click', () => {
-                            auth.signOut().then(() => {
-                                window.location.href = 'index.html';
-                            });
-                        });
-                    }
-                } else {
-                    console.log("No user logged in");
-                    if (authBtns) {
-                        authBtns.innerHTML = `
-                            <a href="auth.html" class="btn btn-outline">Log In</a>
-                            <a href="auth.html" class="btn btn-primary">Sign Up</a>
-                        `;
-                    }
-                }
-            });
-        } catch (error) {
-            console.warn("Auth listener error (this is okay if auth is not enabled):", error.message);
-            // Auth not configured - that's fine, anonymous posting still works
-        }
-    }
-
-    // --- Auth Form Logic (auth.html) ---
-    const authForm = document.getElementById('authForm');
-    if (authForm && auth) {
-        authForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const isSignUp = signupTab.classList.contains('active');
-
-            try {
-                if (isSignUp) {
-                    const teamName = document.getElementById('team').value;
-                    const confirmPassword = document.getElementById('confirmPassword').value;
-
-                    if (password !== confirmPassword) {
-                        alert("Passwords do not match!");
-                        return;
-                    }
-
-                    // 1. Create User
-                    const cred = await auth.createUserWithEmailAndPassword(email, password);
-
-                    // 2. Save Team Name to Firestore
-                    await db.collection('users').doc(cred.user.uid).set({
-                        teamName: teamName,
-                        email: email,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-
-                    alert("Account created successfully!");
-                } else {
-                    // Log In
-                    await auth.signInWithEmailAndPassword(email, password);
-                }
-
-                // Redirect on success
-                window.location.href = 'index.html';
-
-            } catch (err) {
-                console.error("Auth Error:", err);
-                alert(err.message);
-            }
-        });
-    }
 
     // --- Forum Interaction ---
     const openPostModal = document.getElementById('openPostModal');
@@ -159,20 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const forumFeed = document.getElementById('forumFeed');
 
     const toggleModal = (show) => {
-        // Removed auth check to allow anonymous posting
         if (postModal) postModal.style.display = show ? 'block' : 'none';
-        if (show) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = 'auto';
-
-        // Pre-fill name if logged in
-        if (show && auth?.currentUser) {
-            const nameInput = document.getElementById('postAuthor');
-            if (nameInput && !nameInput.value) {
-                // We'll try to fetch it if we don't have it locally, but for now just leave it open or user can type
-                // Optimistically we could check our local user data if we stored it globally, but for now let's just let them type
-                // or if we really wanted, we could do a quick lookup here, but might be overkill.
-                // Let's just focus on the anonymous toggle logic below.
-            }
+        if (show) {
+            document.body.style.overflow = 'hidden';
+            // Author pre-fill logic removed as auth is gone
+        } else {
+            document.body.style.overflow = 'auto';
         }
     };
 
@@ -203,16 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderPost = (post) => {
         const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
 
-        // Check if user can delete this post
-        let canDelete = false;
-        if (auth?.currentUser && post.uid === auth.currentUser.uid) {
-            // Logged-in user created this post
-            canDelete = true;
-        } else if (!auth?.currentUser || !post.uid) {
-            // Check if this post was created in current session
-            const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
-            canDelete = myPosts.includes(post.id);
-        }
+        // Check if user can delete this post (exclusively session-based)
+        const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
+        const canDelete = myPosts.includes(post.id);
 
         const deleteButton = canDelete ? `
             <button onclick="deletePost('${post.id}')" 
@@ -263,12 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             await db.collection('posts').doc(postId).delete();
-
-            // Remove from sessionStorage if it exists
             const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
             const updatedPosts = myPosts.filter(id => id !== postId);
             sessionStorage.setItem('myPosts', JSON.stringify(updatedPosts));
-
             console.log('Post deleted successfully');
         } catch (err) {
             console.error('Error deleting post:', err);
@@ -322,9 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newPostForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Removed login check
-            // if (!db || !auth.currentUser) ...
-
             const title = document.getElementById('postTitle').value;
             const category = document.getElementById('postCategory').value;
             const content = document.getElementById('postContent').value;
@@ -340,24 +203,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                // Use current user UID if available, otherwise null
-                const uid = auth.currentUser ? auth.currentUser.uid : null;
-
                 const docRef = await db.collection('posts').add({
                     title,
                     category,
                     content,
                     author,
-                    uid: uid, // Can be null now
+                    uid: null, // Always null as auth is removed
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                // Track this post in sessionStorage if not logged in
-                if (!uid) {
-                    const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
-                    myPosts.push(docRef.id);
-                    sessionStorage.setItem('myPosts', JSON.stringify(myPosts));
-                }
+                // Track this post in sessionStorage for deletion permission
+                const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
+                myPosts.push(docRef.id);
+                sessionStorage.setItem('myPosts', JSON.stringify(myPosts));
 
                 newPostForm.reset();
                 toggleModal(false);
@@ -388,16 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial load for forum
     if (forumFeed && db) {
         listenForPosts();
     }
 });
-
-// Helper function to render common components if needed via JS
-function loadComponent(id, html) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.innerHTML = html;
-    }
-}

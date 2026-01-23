@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post | The FTC Rookie Hub</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK (Firestore only) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <style>
         .post-container {
             max-width: 900px;
@@ -14,43 +18,59 @@
         }
 
         .avatar {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: var(--primary);
-            display: grid;
-            place-items: center;
+            background: var(--surface-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            color: white;
+            color: var(--primary);
+            font-size: 1.2rem;
         }
 
         .badge {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            background: #f1f5f9;
-            color: var(--text-muted);
-            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        textarea {
+        #replyText {
             width: 100%;
             padding: 1.2rem 1.5rem;
             border-radius: var(--radius-md);
             border: 1px solid var(--border);
-            background: var(--surface);
+            background: white;
             color: var(--text);
             font-family: inherit;
             min-height: 150px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        #replyText:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .comment-card {
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--border);
             transition: var(--transition);
         }
 
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        .comment-card:hover {
+            border-left-color: var(--primary);
+            background: var(--surface);
         }
     </style>
 </head>
@@ -58,7 +78,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <nav>
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
                 <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
                 <div class="nav-links">
                     <a href="index.html" class="nav-link">Home</a>
@@ -67,92 +87,78 @@
                     <a href="resources.html" class="nav-link">Resources</a>
                     <a href="about.html" class="nav-link">About</a>
                 </div>
-                <div class="auth-btns">
-                    <a href="auth.html" class="btn btn-outline">Log In</a>
-                    <a href="auth.html" class="btn btn-primary">Sign Up</a>
-                </div>
             </nav>
         </div>
     </header>
 
     <main style="padding-top: var(--header-height);">
         <div class="post-container">
-            <a href="forum.html" style="color: var(--text-muted); display: inline-block; margin-bottom: 2rem;">← Back to
-                Forum</a>
+            <a href="forum.html"
+                style="color: var(--text-muted); display: inline-block; margin-bottom: 2rem; text-decoration: none; font-weight: 500;">
+                ← Back to Forum
+            </a>
 
-            <article class="card" style="padding: 3rem; margin-bottom: 3rem;">
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <span class="badge" style="background: #e0e7ff; color: var(--primary);">[ROOKIE]</span>
-                    <span class="badge" style="background: #f1f5f9; color: var(--text-muted);">[BUILD]</span>
-                </div>
-                <h1 style="font-size: 2.25rem; margin-bottom: 1.5rem; line-height: 1.3;">GoBilda vs Rev Robotics: Which
-                    is better for rookies?</h1>
-
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;">
-                    <div class="avatar">JD</div>
-                    <div>
-                        <div style="font-weight: 600; color: var(--text);">JohnDoe</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">Posted 2 hours ago • Team #12345
-                        </div>
-                    </div>
-                </div>
-
-                <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
-                    <p style="margin-bottom: 1.5rem;">Hi everyone! We're a brand new rookie team from Seattle. We just
-                        got our registration confirmed and we're looking at which starter kit to buy.</p>
-                    <p style="margin-bottom: 1.5rem;">GoBilda seems to have very strong mechanical components (the
-                        Strafer chassis looks amazing), but Rev Robotics seems to be more integrated with the Control
-                        Hub. We're worried that GoBilda might be too complex for a first-year team.</p>
-                    <p>What did you guys start with? Any recommendations?</p>
-                </div>
-
-                <div
-                    style="margin-top: 3rem; padding: 1.5rem; border-radius: var(--radius-md); background: #ecfdf5; border: 1px solid #d1fae5;">
-                    <p style="font-size: 0.9rem; color: #065f46; font-weight: 600;">💡 Friendly Reminder: No question is
-                        too small here. We're all here to learn!</p>
-                </div>
-            </article>
-
-            <h2 style="margin-bottom: 2rem;">Replies (2)</h2>
-
-            <!-- Comment 1 -->
-            <div class="card" style="padding: 2rem; margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
-                    <div class="avatar" style="background: var(--secondary);">MS</div>
-                    <div>
-                        <div style="font-weight: 600; color: var(--text);">MasterStrategist <span
-                                style="background: #e0f2fe; color: var(--secondary); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; vertical-align: middle; margin-left: 0.5rem;">MENTOR</span>
-                        </div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">1 hour ago • 5 years experience</div>
-                    </div>
-                </div>
-                <div style="color: var(--text); line-height: 1.6;">
-                    Hey John! Welcome to FTC. Honestly, you can't go wrong with either, but for rookies, GoBilda's
-                    "Build-to-Order" system is very intuitive. The hole pattern makes everything line up perfectly.
-                    Don't worry about complexity—their documentation is fantastic.
-                </div>
+            <div id="postLoading" class="card" style="padding: 4rem; text-align: center;">
+                <div class="animate-spin" style="font-size: 2rem; margin-bottom: 1rem;">⚙️</div>
+                <p>Loading discussion...</p>
             </div>
 
-            <!-- Comment 2 -->
-            <div class="card" style="padding: 2rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
-                    <div class="avatar" style="background: var(--accent);">BC</div>
-                    <div>
-                        <div style="font-weight: 600; color: var(--text);">BrightCogs</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">45 minutes ago • Rookie Team</div>
-                    </div>
-                </div>
-                <div style="color: var(--text); line-height: 1.6;">
-                    We went with Rev! It was a bit easier to get everything from one place. Though we did end up buying
-                    some GoBilda wheels later. The integration with the Control Hub is definitely a plus.
-                </div>
+            <div id="postError" class="card" style="padding: 4rem; text-align: center; display: none;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                <h2 style="margin-bottom: 0.5rem;">Post not found</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">This discussion may have been moved or
+                    deleted.</p>
+                <a href="forum.html" class="btn btn-primary">Return to Forum</a>
             </div>
 
-            <div class="card" style="margin-top: 4rem; padding: 2.5rem; background: var(--surface);">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Your Reply</h3>
-                <textarea placeholder="Write your encouraging reply here..."></textarea>
-                <div style="display: flex; justify-content: flex-end;">
-                    <button class="btn btn-primary" style="padding: 0.8rem 2rem;">Post Reply</button>
+            <div id="postContentArea" style="display: none;">
+                <article class="card" style="padding: 3rem; margin-bottom: 4rem; border-top: 4px solid var(--primary);">
+                    <div id="postHeader" style="margin-bottom: 1.5rem;">
+                        <span id="postCategory" class="badge">CATEGORY</span>
+                    </div>
+                    <h1 id="postDisplayTitle"
+                        style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2; font-weight: 800; color: var(--text);">
+                        Post Title
+                    </h1>
+
+                    <div
+                        style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                        <div id="postAvatar" class="avatar">R</div>
+                        <div>
+                            <div id="postDisplayAuthor"
+                                style="font-weight: 700; color: var(--text); font-size: 1.1rem;">Author Name</div>
+                            <div id="postMeta" style="font-size: 0.9rem; color: var(--text-muted);">Posted just now
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="postDisplayContent"
+                        style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); white-space: pre-wrap;">
+                        Post content goes here...
+                    </div>
+                </article>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 id="repliesCount" style="font-size: 1.5rem; font-weight: 700;">Replies (0)</h2>
+                </div>
+
+                <div id="repliesList">
+                    <!-- Replies will be injected here -->
+                </div>
+
+                <div class="card" style="margin-top: 4rem; padding: 3rem; background: var(--surface);">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700;">Join the Discussion</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="replyAuthor" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your
+                            Name / Team</label>
+                        <input type="text" id="replyAuthor" placeholder="e.g. John Doe or Team 12345"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+                    </div>
+                    <textarea id="replyText" placeholder="Write your helpful reply here..."></textarea>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button id="submitReply" class="btn btn-primary"
+                            style="padding: 1rem 2.5rem; font-size: 1rem;">Post Reply</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,32 +166,6 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h2 class="logo">The <span>FTC Rookie</span> Hub</h2>
-                    <p>A safe, welcoming space for the next generation of FTC engineers.</p>
-                    <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
-                            target="_blank">Dragon Warriors</a></p>
-                </div>
-                <div class="footer-links">
-                    <h3>Explore</h3>
-                    <ul>
-                        <li><a href="rookie-hub.html">Rookie Hub</a></li>
-                        <li><a href="forum.html">Forum</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="build-logs.html">Build Logs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Community</h3>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="competition.html">Survival Guide</a></li>
-                        <li><a href="#">Official FTC Site</a></li>
-                        <li><a href="#">Game Manuals</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
                 <p class="credit-text">Designed and Built with ⚙️ by the <a
@@ -195,6 +175,124 @@
     </footer>
 
     <script src="main.js"></script>
+    <script>
+        // Post.html specific logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            if (!postId) {
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postError').style.display = 'block';
+                return;
+            }
+
+            const db = firebase.firestore();
+
+            try {
+                // Fetch the post
+                const doc = await db.collection('posts').doc(postId).get();
+
+                if (!doc.exists) {
+                    document.getElementById('postLoading').style.display = 'none';
+                    document.getElementById('postError').style.display = 'block';
+                    return;
+                }
+
+                const post = doc.data();
+
+                // Display the post
+                document.getElementById('postDisplayTitle').textContent = post.title;
+                document.getElementById('postCategory').textContent = post.category;
+                document.getElementById('postDisplayAuthor').textContent = post.author || 'Anonymous';
+                document.getElementById('postAvatar').textContent = (post.author || 'R')[0].toUpperCase();
+                document.getElementById('postDisplayContent').textContent = post.content;
+
+                const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+                document.getElementById('postMeta').textContent = `Posted on ${date}`;
+
+                // Fetch replies
+                listenForReplies(postId);
+
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postContentArea').style.display = 'block';
+
+                // Handle reply submission
+                const submitBtn = document.getElementById('submitReply');
+                submitBtn.addEventListener('click', async () => {
+                    const author = document.getElementById('replyAuthor').value.trim() || 'Anonymous';
+                    const content = document.getElementById('replyText').value.trim();
+
+                    if (!content) {
+                        alert('Please enter a reply.');
+                        return;
+                    }
+
+                    try {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Posting...';
+
+                        await db.collection('posts').doc(postId).collection('replies').add({
+                            author,
+                            content,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+
+                        document.getElementById('replyText').value = '';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Reply';
+                    } catch (err) {
+                        console.error('Error posting reply:', err);
+                        alert('Failed to post reply.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Reply';
+                    }
+                });
+
+            } catch (err) {
+                console.error('Error loading post:', err);
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postError').style.display = 'block';
+            }
+        });
+
+        function listenForReplies(postId) {
+            const db = firebase.firestore();
+            db.collection('posts').doc(postId).collection('replies')
+                .orderBy('createdAt', 'asc')
+                .onSnapshot((snapshot) => {
+                    const repliesList = document.getElementById('repliesList');
+                    const repliesCount = document.getElementById('repliesCount');
+
+                    repliesCount.textContent = `Replies (${snapshot.size})`;
+
+                    if (snapshot.empty) {
+                        repliesList.innerHTML = '<p style="color: var(--text-muted); padding: 2rem; text-align: center;">No replies yet. Be the first to join the conversation!</p>';
+                        return;
+                    }
+
+                    let html = '';
+                    snapshot.forEach(doc => {
+                        const reply = doc.data();
+                        const date = reply.createdAt ? new Date(reply.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+
+                        html += `
+                            <div class="card comment-card animate-fade-in">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div class="avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                                        ${(reply.author || 'A')[0].toUpperCase()}
+                                    </div>
+                                    <div style="font-weight: 600;">${reply.author || 'Anonymous'}</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">${date}</div>
+                                </div>
+                                <div style="color: var(--text-muted); line-height: 1.6; white-space: pre-wrap;">${reply.content}</div>
+                            </div>
+                        `;
+                    });
+                    repliesList.innerHTML = html;
+                });
+        }
+    </script>
 </body>
 
 </html>

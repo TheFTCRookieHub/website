@@ -1,8 +1,8 @@
 // Firebase Configuration for The FTC Rookie Hub
-// These values are now active and the forum is live!
+// Firestore only - Authentication removed
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC9E55uE9D4-c2ljKbHhMudGSHcxk3iemw",
+    apiKey: "API_KEY_PLACEHOLDER",
     authDomain: "ftc-rookie-hub.firebaseapp.com",
     projectId: "ftc-rookie-hub",
     storageBucket: "ftc-rookie-hub.firebasestorage.app",
@@ -11,12 +11,11 @@ const firebaseConfig = {
     measurementId: "G-PVEGX8WMQP"
 };
 
-// Initialize Firebase
+// Initialize Firebase (Firestore only)
 if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-    const auth = firebase.auth();
-    console.log("Firebase initialized successfully");
+    console.log("Firebase Firestore initialized successfully");
 } else {
     console.warn("Firebase configuration is missing. Real-time forum posts will not work.");
     console.info("To enable real-time sync, update firebase-config.js with your credentials.");
