@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Guide | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .checklist-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .check-item:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .check-item span {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="rookie-hub.html" class="nav-link">Rookie Hub</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Competition Survival Guide</h1>
+                    <p style="color: var(--text-muted); font-size: 1.2rem;">Don't panic! Use this checklist to stay cool
+                        on competition day.</p>
+                </div>
+
+                <div class="checklist-container">
+                    <!-- Packing Checklist -->
+                    <div class="card" style="padding: 2.5rem; margin-bottom: 2.5rem;">
+                        <h2 style="margin-bottom: 2rem; color: var(--primary); font-size: 1.5rem;">📦 What to Pack</h2>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Robot & Controllers</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Charged Batteries (at least 4)</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Laptop & Programming Cables</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Spare parts (motors, servos, screws)</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Zip ties & Duct tape (lifesavers!)</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Engineering Portfolio</span>
+                        </div>
+                    </div>
+
+                    <!-- Inspection -->
+                    <div class="card" style="padding: 2.5rem; margin-bottom: 2.5rem;">
+                        <h2 style="margin-bottom: 2rem; color: var(--secondary); font-size: 1.5rem;">🔍 Inspection
+                            Readiness</h2>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Robot fits in the 18" cube</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>All wiring is secure and not exposed</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Team numbers are visible on two sides</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Status light is visible</span>
+                        </div>
+                        <div class="check-item">
+                            <div class="checkbox"></div> <span>Main power switch is accessible</span>
+                        </div>
+                    </div>
+
+                    <!-- Match Day -->
+                    <div class="card"
+                        style="padding: 2.5rem; margin-bottom: 2.5rem; border-left: 4px solid var(--warning); background: #fffbeb;">
+                        <h2 style="margin-bottom: 1.5rem; color: #92400e; font-size: 1.5rem;">⚡ Emergency: Robot Fails
+                            Mid-Match?</h2>
+                        <p style="color: #92400e; margin-bottom: 1.5rem; opacity: 0.8;">If your robot stops moving,
+                            don't worry. It happens to everyone!</p>
+                        <ol style="margin-left: 1.5rem; color: #92400e; line-height: 1.8;">
+                            <li style="margin-bottom: 0.8rem;">Check the Wi-Fi connection on the Driver Hub.</li>
+                            <li style="margin-bottom: 0.8rem;">Restart the robot app on both phones/hubs.</li>
+                            <li style="margin-bottom: 0.8rem;">Signal your alliance partner—they might be able to help
+                                you!</li>
+                            <li style="margin-bottom: 0.8rem;">After the match, head to the pit and check for loose
+                                battery connections.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="logo">The <span>FTC Rookie</span> Hub</h2>
+                    <p>A safe, welcoming space for the next generation of FTC engineers.</p>
+                    <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                            target="_blank">Dragon Warriors</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="rookie-hub.html">Rookie Hub</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="build-logs.html">Build Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="competition.html">Survival Guide</a></li>
+                        <li><a href="#">Official FTC Site</a></li>
+                        <li><a href="#">Game Manuals</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Designed and Built with ⚙️ by the <a
+                        href="https://ftcdragonwarriors.github.io/website/" target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

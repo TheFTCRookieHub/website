@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Logs | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .log-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .log-image-placeholder {
+            width: 100%;
+            height: 350px;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            display: grid;
+            place-items: center;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="rookie-hub.html" class="nav-link">Rookie Hub</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Build Logs & Rookie Diaries</h1>
+                    <p style="color: var(--text-muted); font-size: 1.2rem;">Failure is just another way to learn. Share
+                        your journey here!</p>
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-bottom: 4rem;">
+                    <button class="btn btn-primary" style="padding: 1rem 3rem;">+ Share Your Progress</button>
+                </div>
+
+                <div class="log-grid">
+                    <!-- Log 1 -->
+                    <article class="card" style="padding: 3rem; margin-bottom: 3rem;">
+                        <div class="log-header">
+                            <h3 style="font-size: 1.5rem;">Week 3: The Chassis is ALIVE!</h3>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">Team #19283 •
+                                2 days ago</span>
+                        </div>
+                        <p style="color: var(--text); line-height: 1.7;">After 5 hours of troubleshooting why our motors
+                            weren't
+                            spinning, we realized the battery wasn't fully plugged in... Classic! But now it moves!</p>
+                        <div class="log-image-placeholder">
+                            [ Team Photo / Robot Chassis Image ]
+                        </div>
+                        <p style="font-weight: 600; color: var(--success); font-size: 0.95rem;">Lesson Learned: Always
+                            check your
+                            connections first!</p>
+                    </article>
+
+                    <!-- Log 2 -->
+                    <article class="card" style="padding: 3rem; margin-bottom: 3rem;">
+                        <div class="log-header">
+                            <h3 style="font-size: 1.5rem;">Our First Autonomous Attempt</h3>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">RookieBots • 1
+                                week ago</span>
+                        </div>
+                        <p style="color: var(--text); line-height: 1.7;">We tried to make the robot drive forward for 2
+                            seconds.
+                            Instead, it spun in circles and hit a wall. Back to the drawing board!</p>
+                        <div class="log-image-placeholder">
+                            [ Video of Robot Spinning ]
+                        </div>
+                        <p style="font-weight: 600; color: var(--primary); font-size: 0.95rem;">Lesson Learned: Check
+                            your motor directions
+                            in the config.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="logo">The <span>FTC Rookie</span> Hub</h2>
+                    <p>A safe, welcoming space for the next generation of FTC engineers.</p>
+                    <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                            target="_blank">Dragon Warriors</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="rookie-hub.html">Rookie Hub</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="build-logs.html">Build Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="competition.html">Survival Guide</a></li>
+                        <li><a href="#">Official FTC Site</a></li>
+                        <li><a href="#">Game Manuals</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Designed and Built with ⚙️ by the <a
+                        href="https://ftcdragonwarriors.github.io/website/" target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
