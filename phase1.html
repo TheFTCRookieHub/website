@@ -15,9 +15,36 @@
                 <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
                 <div class="nav-links">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="rookie-hub.html" class="nav-link active">Rookie Hub</a>
-                    <a href="connect.html" class="nav-link">Connect</a>
-                    <a href="forum.html" class="nav-link">Forum</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
                     <a href="resources.html" class="nav-link">Resources</a>
                     <a href="about.html" class="nav-link">About</a>
                 </div>
@@ -75,6 +102,101 @@
                                 <p style="font-size: 0.9rem;">Uses "Pattern" based channel. Extremely sturdy and
                                     rookie-friendly because holes always line up.</p>
                             </div>
+                        </div>
+
+                        <!-- New Content: Day-by-Day Schedule -->
+                        <div style="margin-top: 3rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The First 30 Days: A Daily Plan
+                            </h2>
+
+                            <div style="border-left: 2px solid var(--border); padding-left: 2rem; margin-left: 1rem;">
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div
+                                        style="position: absolute; left: -2.4rem; top: 0; background: var(--primary); color: white; width: 0.8rem; height: 0.8rem; border-radius: 50%;">
+                                    </div>
+                                    <h4 style="margin: 0; color: var(--primary);">Week 1: Analysis & Strategy</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                        <strong>Day 1:</strong> Watch Reveal. Read Manual Part 2. No building.<br>
+                                        <strong>Day 2:</strong> "What is the max score?" Calc. Group Discussion.<br>
+                                        <strong>Day 3:</strong> Scoring Priority List. Vote on "What we will NOT
+                                        do".<br>
+                                        <strong>Day 5:</strong> Order missing parts.
+                                    </p>
+                                </div>
+
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div
+                                        style="position: absolute; left: -2.4rem; top: 0; background: #ea580c; color: white; width: 0.8rem; height: 0.8rem; border-radius: 50%;">
+                                    </div>
+                                    <h4 style="margin: 0; color: #ea580c;">Week 2: Prototyping (CardboardCAD)</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                        <strong>Day 8:</strong> Build wood/cardboard intake prototypes.<br>
+                                        <strong>Day 10:</strong> Test intake on game elements. Fail fast.<br>
+                                        <strong>Day 12:</strong> Finalize Drivetrain choice. Start assembling chassis.
+                                    </p>
+                                </div>
+
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div
+                                        style="position: absolute; left: -2.4rem; top: 0; background: #4338ca; color: white; width: 0.8rem; height: 0.8rem; border-radius: 50%;">
+                                    </div>
+                                    <h4 style="margin: 0; color: #4338ca;">Week 3: The Build</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                                        <strong>Day 15:</strong> Chassis driving. Programmers get "Hello World"
+                                        moving.<br>
+                                        <strong>Day 18:</strong> Mount intake mechanism to chassis.<br>
+                                        <strong>Day 20:</strong> Wiring day. Ferrules everywhere.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Drivetrain Table -->
+                        <div class="card" style="padding: 2.5rem; margin-top: 2rem;">
+                            <h2 style="margin-bottom: 1rem;">Decision: Which Drivetrain?</h2>
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 1rem; border: 1px solid var(--border); text-align: left;">Type
+                                    </th>
+                                    <th style="padding: 1rem; border: 1px solid var(--border); text-align: left;">Pros
+                                    </th>
+                                    <th style="padding: 1rem; border: 1px solid var(--border); text-align: left;">Cons
+                                    </th>
+                                    <th style="padding: 1rem; border: 1px solid var(--border); text-align: left;">
+                                        Verdict</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);"><strong>Mecanum</strong>
+                                        (4 wheels)</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Moves sideways (Strafe).
+                                        Agile.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Got pushed easily.
+                                        Requires complex code.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border); color: #16a34a;">
+                                        <strong>Best for Rookies</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);"><strong>6-Wheel Drop
+                                            Center</strong></td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Fast, strong pushing
+                                        power. Simple.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Cannot move sideways.
+                                        Harder to align.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Good for Defense</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);"><strong>Tank
+                                            Threads</strong></td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Looks cool. Climbs
+                                        obstacles.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border);">Slow. Break easily.
+                                        Expensive.</td>
+                                    <td style="padding: 1rem; border: 1px solid var(--border); color: #dc2626;">
+                                        <strong>Avoid</strong>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 

@@ -15,9 +15,36 @@
                 <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
                 <div class="nav-links">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="rookie-hub.html" class="nav-link active">Rookie Hub</a>
-                    <a href="connect.html" class="nav-link">Connect</a>
-                    <a href="forum.html" class="nav-link">Forum</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
                     <a href="resources.html" class="nav-link">Resources</a>
                     <a href="about.html" class="nav-link">About</a>
                 </div>
@@ -34,76 +61,116 @@
                         We've broken down the complex world of FTC into bite-sized, manageable steps.</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-                    <!-- Section 1 -->
-                    <div class="card">
-                        <span
-                            style="display: inline-block; padding: 0.25rem 0.75rem; background: #ecfdf5; color: #059669; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem;">PHASE
-                            0</span>
-                        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Before the Season</h2>
-                        <ul style="color: var(--text-muted); font-size: 0.95rem;">
-                            <li style="margin-bottom: 0.75rem;">✓ Recruit 3-15 team members</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Find a safe space to meet and build</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Secure funding (grants, sponsors)</li>
-                        </ul>
-                        <a href="phase0.html" class="btn btn-primary"
-                            style="margin-top: 1rem; width: 100%; text-align: center;">Start Phase 0 Guide</a>
+                <!-- Phase Cards Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+                    <!-- Phase 0 -->
+                    <div class="card animate-fade-in" style="display: flex; flex-direction: column; height: 100%;">
+                        <div
+                            style="height: 140px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🌱
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Phase 0: Before the Season</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                Team formation, budget planning, and workspace setup. Start here in May-August.
+                            </p>
+                            <a href="phase0.html" class="btn btn-outline" style="width: 100%; text-align: center;">Start
+                                Phase 0</a>
+                        </div>
                     </div>
 
-                    <!-- Section 2 -->
-                    <div class="card">
-                        <span
-                            style="display: inline-block; padding: 0.25rem 0.75rem; background: #eff6ff; color: #2563eb; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem;">PHASE
-                            1</span>
-                        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">First 30 Days</h2>
-                        <ul style="color: var(--text-muted); font-size: 0.95rem;">
-                            <li style="margin-bottom: 0.75rem;">✓ Read Game Manual Part 2</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Brainstorm strategy (What will the robot do?)</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Build a basic "PushBot" or Drivetrain</li>
-                        </ul>
-                        <a href="phase1.html" class="btn btn-primary"
-                            style="margin-top: 1rem; width: 100%; text-align: center;">Start Phase 1 Guide</a>
+                    <!-- Phase 1 -->
+                    <div class="card animate-fade-in"
+                        style="display: flex; flex-direction: column; height: 100%; transition-delay: 0.1s;">
+                        <div
+                            style="height: 140px; background: #ffedd5; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🧱
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: #ea580c;">Phase 1: The First 30 Days</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                Game analysis, prototyping, and building your first chassis. Don't panic!
+                            </p>
+                            <a href="phase1.html" class="btn btn-outline" style="width: 100%; text-align: center;">Start
+                                Phase 1</a>
+                        </div>
                     </div>
 
-                    <!-- Section 3 -->
-                    <div class="card">
-                        <span
-                            style="display: inline-block; padding: 0.25rem 0.75rem; background: #fef2f2; color: #dc2626; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem;">REFERENCE</span>
-                        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Game Manuals 101</h2>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">The manuals are
-                            long. We've summarized the most critical parts for inspection day.</p>
-                        <a href="game-manuals.html" class="btn btn-outline"
-                            style="width: 100%; text-align: center;">Simplified Manuals</a>
+                    <!-- Phase 2 -->
+                    <div class="card animate-fade-in"
+                        style="display: flex; flex-direction: column; height: 100%; transition-delay: 0.2s;">
+                        <div
+                            style="height: 140px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            ⚙️
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: #475569;">Phase 2: The Mid-Season</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                Iterative design, wiring hygiene, and surviving the "messy middle" (Weeks 5-8).
+                            </p>
+                            <a href="phase2.html" class="btn btn-outline" style="width: 100%; text-align: center;">Start
+                                Phase 2</a>
+                        </div>
                     </div>
 
-                    <!-- Section 4 -->
-                    <div class="card">
-                        <span
-                            style="display: inline-block; padding: 0.25rem 0.75rem; background: #fdf2f8; color: #db2777; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem;">ORGANIZATION</span>
-                        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Team Roles Explained</h2>
-                        <ul style="color: var(--text-muted); font-size: 0.95rem;">
-                            <li style="margin-bottom: 0.75rem;">✓ Builders: The hardware masters</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Coders: Bringing the robot to life</li>
-                            <li style="margin-bottom: 0.75rem;">✓ Outreach: Engaging the community</li>
-                        </ul>
-                        <a href="team-roles.html" class="btn btn-outline"
-                            style="margin-top: 1rem; width: 100%; text-align: center;">View Role Details</a>
+                    <!-- Phase 3 -->
+                    <div class="card animate-fade-in"
+                        style="display: flex; flex-direction: column; height: 100%; transition-delay: 0.3s;">
+                        <div
+                            style="height: 140px; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🎙️
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: #4338ca;">Phase 3: Comp Prep</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                Drive practice drills, judging scripts, and scouting strategy (Weeks 9-12).
+                            </p>
+                            <a href="phase3.html" class="btn btn-outline" style="width: 100%; text-align: center;">Start
+                                Phase 3</a>
+                        </div>
                     </div>
 
-                    <!-- Section 5 -->
-                    <div class="card" style="border-top: 4px solid var(--error);">
-                        <span
-                            style="display: inline-block; padding: 0.25rem 0.75rem; background: #fff1f2; color: #e11d48; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem;">CAUTION</span>
-                        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Common Rookie Mistakes</h2>
-                        <ul style="color: var(--text-muted); font-size: 0.95rem;">
-                            <li style="margin-bottom: 0.75rem;">❌ Over-complicating design</li>
-                            <li style="margin-bottom: 0.75rem;">❌ Ignoring the Notebook</li>
-                            <li style="margin-bottom: 0.75rem;">❌ Messy wiring/shorts</li>
-                        </ul>
-                        <a href="common-mistakes.html" class="btn btn-outline"
-                            style="margin-top: 1rem; width: 100%; text-align: center; border-color: var(--error); color: var(--error);">Avoid
-                            These Errors</a>
+                    <!-- Phase 4 -->
+                    <div class="card animate-fade-in"
+                        style="display: flex; flex-direction: column; height: 100%; transition-delay: 0.4s;">
+                        <div
+                            style="height: 140px; background: #fee2e2; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🏆
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: #dc2626;">Phase 4: Game Day</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                The ultimate packing list, inspection survival, and alliance tactics.
+                            </p>
+                            <a href="phase4.html" class="btn btn-outline" style="width: 100%; text-align: center;">Start
+                                Phase 4</a>
+                        </div>
                     </div>
+
+                    <!-- Reference: Common Mistakes -->
+                    <div class="card animate-fade-in"
+                        style="display: flex; flex-direction: column; height: 100%; transition-delay: 0.5s;">
+                        <div
+                            style="height: 140px; background: #fef3c7; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🚧
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 style="margin-bottom: 0.5rem; color: #d97706;">Rookie Mistakes</h3>
+                            <p
+                                style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">
+                                "I wish I knew that." Read this to avoid common wiring and coding traps.
+                            </p>
+                            <a href="common-mistakes.html" class="btn btn-outline"
+                                style="width: 100%; text-align: center;">Read Mistakes</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
