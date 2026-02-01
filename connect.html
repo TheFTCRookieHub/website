@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="rookie-hub.html" class="nav-link">Rookie Hub</a>
+                    <a href="connect.html" class="nav-link active">Connect</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section class="section-padding">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Find Your Squad</h1>
+                    <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                        Looking for a team? Or is your team looking for members? Post your profile here to connect with
+                        others in your area.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start;">
+
+                    <!-- Registration Form -->
+                    <div class="card" style="position: sticky; top: 100px;">
+                        <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Post Your Profile</h2>
+                        <form id="connectForm">
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="connectorName"
+                                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name (or Team
+                                    Name)</label>
+                                <input type="text" id="connectorName" class="form-control"
+                                    placeholder="e.g. Alex S. or Team 12345" required
+                                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="connectorRole"
+                                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">I am a...</label>
+                                <select id="connectorRole" class="form-control"
+                                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                                    <option value="Student (Builder)">Student (Builder)</option>
+                                    <option value="Student (Coder)">Student (Coder)</option>
+                                    <option value="Student (General)">Student (General)</option>
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Team (Recruiting)">Team (Recruiting)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="connectorLocation"
+                                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Location (City,
+                                    State)</label>
+                                <input type="text" id="connectorLocation" class="form-control"
+                                    placeholder="e.g. Austin, TX" required
+                                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="connectorContact"
+                                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Contact Info
+                                    (Email/Discord)</label>
+                                <input type="text" id="connectorContact" class="form-control"
+                                    placeholder="e.g. discord_handle or email" required
+                                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                                <p style="font-size: 0.75rem; color: var(--error); margin-top: 0.25rem;">⚠️ Only post
+                                    what you are comfortable sharing publicly.</p>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label for="connectorBio"
+                                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Short Bio /
+                                    Skills</label>
+                                <textarea id="connectorBio" class="form-control" rows="3"
+                                    placeholder="e.g. I know Java and have built LEGO robots before."
+                                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Post Profile</button>
+                        </form>
+                    </div>
+
+                    <!-- Feed -->
+                    <div>
+                        <h2 style="margin-bottom: 1.5rem;">Recent Posts</h2>
+                        <div id="connectFeed">
+                            <!-- Loading State -->
+                            <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                                Loading profiles...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                        target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
