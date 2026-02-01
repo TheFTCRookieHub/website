@@ -15,9 +15,36 @@
                 <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
                 <div class="nav-links">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="rookie-hub.html" class="nav-link active">Rookie Hub</a>
-                    <a href="connect.html" class="nav-link">Connect</a>
-                    <a href="forum.html" class="nav-link">Forum</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
                     <a href="resources.html" class="nav-link">Resources</a>
                     <a href="about.html" class="nav-link">About</a>
                 </div>
@@ -38,23 +65,39 @@
                 <div style="display: grid; gap: 3rem; max-width: 900px;">
 
                     <!-- Recruitment -->
-                    <div class="card">
-                        <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary);">1. Building the Team
-                        </h2>
-                        <p style="margin-bottom: 1rem;">You need more than just coders. A successful FTC team operates
-                            like a small startup.</p>
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Who to recruit:</h3>
-                        <ul
-                            style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
-                            <li><strong>Builders:</strong> Kids who love LEGOs or taking things apart.</li>
-                            <li><strong>Coders:</strong> Anyone interested in logic, math, or computers.</li>
-                            <li><strong>Communicators:</strong> Essential for the Engineering Portfolio and judging.
-                            </li>
-                            <li><strong>Project Managers:</strong> Someone to keep everyone on track.</li>
-                        </ul>
-                        <p><em>Target Size: 5-10 students is the sweet spot. Limit is 15.</em></p>
-                    </div>
+                    <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                        <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Recruiting Your Squad</h2>
+                        <p style="margin-bottom: 1.5rem;">
+                            You don't need geniuses; you need committed learners. A team of 5-10 students is the sweet
+                            spot.
+                        </p>
 
+                        <div
+                            style="background: #eff6ff; border-left: 4px solid var(--primary); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1rem;">🎯 Who to look
+                                for:</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+                                Look for the artist (Documentation), the speaker (Outreach), and the gamer (Driver), not
+                                just the coder.
+                            </p>
+                        </div>
+
+                        <h3>Recruitment Checklist</h3>
+                        <div style="margin-top: 1rem;">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem; align-items: center;">
+                                <input type="checkbox" style="transform: scale(1.2);">
+                                <label>Host an interest meeting at school/library</label>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem; align-items: center;">
+                                <input type="checkbox" style="transform: scale(1.2);">
+                                <label>Find 2 adult mentors (Technical & Non-Technical)</label>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem; align-items: center;">
+                                <input type="checkbox" style="transform: scale(1.2);">
+                                <label>Register team on FIRST dashboard ($295)</label>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Budget -->
                     <div class="card">
                         <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary);">2. The Money Talk
@@ -95,25 +138,146 @@
                                 <span>~$2,205+</span>
                             </div>
                         </div>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">*Does not include travel, state
-                            registration fees, or laptops. Look for <strong>Rookie Grants</strong> from FIRST!</p>
-                    </div>
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="margin-bottom: 1.5rem;">The Money Talk</h2>
+                            <p style="margin-bottom: 1.5rem;">FTC isn't cheap, but it's manageable with a plan. Here is
+                                a realistic rookie budget.</p>
 
-                    <!-- Workspace -->
-                    <div class="card">
-                        <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary);">3. The Workspace
-                        </h2>
-                        <p>You don't need a high-tech lab. A garage, classroom, or basement works fine. Essentials:</p>
-                        <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted);">
-                            <li><strong>Storage:</strong> Bins for parts. If you lose parts, you lose money.</li>
-                            <li><strong>Power:</strong> Dedicated outlets for charging batteries.</li>
-                            <li><strong>Internet:</strong> Reliable WiFi for research and coding.</li>
-                            <li><strong>Field Data:</strong> You need roughly 12x12ft for a full field, but 8x8ft works
-                                for half-field practice.</li>
-                        </ul>
+                            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem;">
+                                <tr style="background: #f1f5f9; text-align: left;">
+                                    <th style="padding: 0.75rem; border: 1px solid var(--border);">Item</th>
+                                    <th style="padding: 0.75rem; border: 1px solid var(--border);">Est. Cost</th>
+                                    <th style="padding: 0.75rem; border: 1px solid var(--border);">Notes</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Registration</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">$295</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Annual FIRST fee</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Control Set (REV)
+                                    </td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">$500+</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Control Hub + Driver
+                                        Hub</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Parts Kit
+                                        (GoBilda/REV)</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">$600 - $1000</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Strafer Kit or
+                                        Starter Kit</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Tournament Fees</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">$150 - $400</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Varies by region</td>
+                                </tr>
+                                <tr style="font-weight: bold; background: #ecfdf5;">
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Total</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border); color: #059669;">
+                                        ~$2,200+</td>
+                                    <td style="padding: 0.75rem; border: 1px solid var(--border);">Start fundraising
+                                        NOW!</td>
+                                </tr>
+                            </table>
+
+                            <a href="resources.html" class="btn btn-outline">See Grant Opportunities</a>
+                        </div>
+
+                        <!-- New Content: The Perfect Workshop -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The Perfect Workshop</h2>
+                            <p style="margin-bottom: 1.5rem;">You don't need a machine shop. You need these specific
+                                tools.</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div>
+                                    <h4
+                                        style="border-bottom: 2px solid #22c55e; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+                                        ✅ Absolute Essentials ($200)</h4>
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li style="margin-bottom: 0.5rem;">🔧 <strong>Hex Key Set (Bondhus):</strong>
+                                            Metric & SAE. Don't buy cheap ones.</li>
+                                        <li style="margin-bottom: 0.5rem;">🔧 <strong>Wrenches:</strong> 5.5mm (for M3
+                                            nuts) and 3/8" (for 6-32 nuts).</li>
+                                        <li style="margin-bottom: 0.5rem;">🔧 <strong>Wire Strippers:</strong> A good
+                                            automatic one saves hours.</li>
+                                        <li style="margin-bottom: 0.5rem;">🔧 <strong>Digital Calipers:</strong> Measure
+                                            twice, cut once.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4
+                                        style="border-bottom: 2px solid #eab308; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+                                        🌟 Nice to Have ($500+)</h4>
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li style="margin-bottom: 0.5rem;">🧰 <strong>Band Saw:</strong> For cutting
+                                            aluminum channel or axle shafts.</li>
+                                        <li style="margin-bottom: 0.5rem;">🧰 <strong>3D Printer (Ender 3):</strong> For
+                                            custom spacers and mounts.</li>
+                                        <li style="margin-bottom: 0.5rem;">🧰 <strong>Drill Press:</strong> Straight
+                                            holes are critical.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Fundraising Templates -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Free Money (Fundraising 101)</h2>
+                            <p style="margin-bottom: 1rem;">Copy/paste this email to send to local engineering firms.
+                            </p>
+
+                            <div
+                                style="background: #f1f5f9; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; border: 1px solid var(--border);">
+                                <strong style="color: var(--text);">Subject:</strong> Future Engineers at [High School
+                                Name] need your help!<br><br>
+                                Dear [Company Name],<br><br>
+                                We are Team [Number], a FIRST Tech Challenge robotics team from [City]. We are students
+                                learning to design, build, and code robots from scratch.<br><br>
+                                We admire [Company]'s work in [Industry] and would love to put your logo on our robot.
+                                We are looking for sponsors to help us cover our registration fees ($295) and parts
+                                costs.<br><br>
+                                Would you be open to a 10-minute presentation from our team?<br><br>
+                                Sincerely,<br>
+                                [Your Name]<br>
+                                Team Captain
+                            </div>
+                        </div>
+
+                        <!-- New Content: Team Charter -->
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The Team Contract</h2>
+                            <p style="margin-bottom: 1rem;">Prevent drama before it starts. Have every student sign
+                                this.</p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                                <li><strong>Attendance:</strong> "I commit to attending 80% of meetings."</li>
+                                <li><strong>Communication:</strong> "I will check Discord/Slack daily."</li>
+                                <li><strong>Safety:</strong> "I will wear safety glasses whenever a robot is on."</li>
+                                <li><strong>Gracious Professionalism:</strong> "I will respect my teammates' ideas."
+                                </li>
+                            </ul>
+                            <button class="btn btn-outline" style="margin-top: 1rem;">Download Template PDF</button>
+                        </div>
+
+                        <!-- Workspace -->
+                        <div class="card">
+                            <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary);">3. The Workspace
+                            </h2>
+                            <p>You don't need a high-tech lab. A garage, classroom, or basement works fine. Essentials:
+                            </p>
+                            <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted);">
+                                <li><strong>Storage:</strong> Bins for parts. If you lose parts, you lose money.</li>
+                                <li><strong>Power:</strong> Dedicated outlets for charging batteries.</li>
+                                <li><strong>Internet:</strong> Reliable WiFi for research and coding.</li>
+                                <li><strong>Field Data:</strong> You need roughly 12x12ft for a full field, but 8x8ft
+                                    works
+                                    for half-field practice.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
     </main>
 

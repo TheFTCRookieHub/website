@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 4: The Tournament | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .packing-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .packing-category h4 {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .pack-item {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pack-item::before {
+            content: "⬜";
+            font-size: 0.8rem;
+        }
+
+        .alert-box {
+            background: #fff1f2;
+            border-left: 4px solid #e11d48;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-sm);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <!-- Hero Section -->
+        <section class="section-padding"
+            style="background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%); color: white; padding: 4rem 0;">
+            <div class="container">
+                <a href="rookie-hub.html"
+                    style="color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 1rem;">←
+                    Back to Hub</a>
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Phase 4: Game Day</h1>
+                <p style="font-size: 1.25rem; color: #fca5a5; max-width: 600px;">Week 13+: Inspection, Strategy, and
+                    Survival</p>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+
+                    <!-- Main Content -->
+                    <div>
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The Ultimate Packing List</h2>
+                            <p style="margin-bottom: 2rem;">Don't be the team asking to borrow a hex key 5 minutes
+                                before a match. Print this and check it off.</p>
+
+                            <div class="packing-category">
+                                <h4>🤖 Robot Essentials</h4>
+                                <div class="packing-grid">
+                                    <div class="pack-item">The Robot (Seriously)</div>
+                                    <div class="pack-item">Driver Station (2 Gamepads + Phone/Hub)</div>
+                                    <div class="pack-item">Batteries (Fully Charged)</div>
+                                    <div class="pack-item">Battery Charger</div>
+                                    <div class="pack-item">Alliance Markers (Red & Blue)</div>
+                                    <div class="pack-item">Team Number Plates</div>
+                                </div>
+                            </div>
+
+                            <div class="packing-category">
+                                <h4>🛠️ The Pit Box</h4>
+                                <div class="packing-grid">
+                                    <div class="pack-item">Full Set of Hex Keys</div>
+                                    <div class="pack-item">Wrenches & Pliers</div>
+                                    <div class="pack-item">Zip Ties (Lots of them)</div>
+                                    <div class="pack-item">Gaffer Tape / Electrical Tape</div>
+                                    <div class="pack-item">Spare Fuses</div>
+                                    <div class="pack-item">Laptop + Charging Cable</div>
+                                </div>
+                            </div>
+
+                            <div class="packing-category">
+                                <h4>📋 Admin & Human Fuel</h4>
+                                <div class="packing-grid">
+                                    <div class="pack-item">Engineering Portfolio (Printed)</div>
+                                    <div class="pack-item">Team Roster (Printed)</div>
+                                    <div class="pack-item">Safety Glasses (One per person + guests)</div>
+                                    <div class="pack-item">Water & Snacks (Non-messy)</div>
+                                    <div class="pack-item">Power Strip (Surge Protector)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Surviving Inspection</h2>
+                            <p style="margin-bottom: 1rem;">
+                                Robot Inspection is pass/fail. You cannot play until you pass.
+                            </p>
+                            <div class="alert-box">
+                                <h4 style="color: #be123c; margin-bottom: 0.5rem;">Common Failures</h4>
+                                <ul style="padding-left: 1.5rem; color: #881337;">
+                                    <li><strong>Sizing:</strong> Robot starts outside the 18" cube.</li>
+                                    <li><strong>Sharp Edges:</strong> Metal protruding that could cut someone.</li>
+                                    <li><strong>Wiring:</strong> Battery obscured or loose wires.</li>
+                                    <li><strong>Numbers:</strong> Team numbers not visible from opposite sides.</li>
+                                </ul>
+                            </div>
+                            <p><strong>Pro-Tip:</strong> Get inspected as EARLY as possible. Queue up as soon as the
+                                pits open.</p>
+                        </div>
+
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Alliance Strategy</h2>
+                            <p style="margin-bottom: 1rem;">
+                                When you are paired with another team, talk to them immediately.
+                            </p>
+                            <h4 style="margin-bottom: 0.5rem;">The Pre-Match Huddle Checklist:</h4>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-muted);">
+                                <li><strong>What is your autonomous?</strong> (Where do you start? Where do you park?)
+                                </li>
+                                <li><strong>What are your strengths?</strong> (Are you a scorer? Are you a defender?)
+                                </li>
+                                <li><strong>What happens if we disconnect?</strong> (Do you push us? Do we stay put?)
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- New Content: The Hour-by-Hour Timeline -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The Perfect Game Day Timeline</h2>
+                            <p style="margin-bottom: 1.5rem;">Chaos is the enemy. Stick to this schedule.</p>
+
+                            <div style="border-left: 2px solid var(--border); padding-left: 1.5rem;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">07:00 AM:</strong> Arrive. Check-in. Drop
+                                    gear in Pit.
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">07:30 AM:</strong> <em>Robot Inspection
+                                        Queue.</em> (Go IMMEDIATELY. Don't wait).
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">08:30 AM:</strong> Driver meeting. (Drivers
+                                    only).
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">09:00 AM:</strong> Judging Interview. (The
+                                    most important 10 mins).
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">10:00 AM:</strong> Qualification Matches
+                                    Start. Scouting team deploys.
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <strong style="color: var(--primary);">12:00 PM:</strong> Lunch. (Eat. Hydrate. Sit
+                                    down).
+                                </div>
+                                <div>
+                                    <strong style="color: var(--primary);">04:00 PM:</strong> Alliance Selection. Have
+                                    your "Pick List" ready.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Pit Organization -->
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Pit Organization Strategy</h2>
+                            <p style="margin-bottom: 1rem;">Your pit is 10x10ft. It will feel like 2x2ft.</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">The "Front" (Public)</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                        This is where you talk to judges/scouts.<br>
+                                        - Team Banner<br>
+                                        - Engineering Portfolio (On a stand)<br>
+                                        - Giveaways (Buttons/stickers)
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">The "Back" (Work)</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                        This is where you fix the robot.<br>
+                                        - Battery Charging Station (Corner)<br>
+                                        - Tool chest (Under table)<br>
+                                        - Spare Parts bucket
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                style="margin-top: 1rem; background: #fff1f2; padding: 1rem; border-radius: 4px; color: #be123c; font-size: 0.9rem;">
+                                <strong>Rule #1:</strong> Keep the floor clear. Tripping hazards = Safety Violation.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside>
+                        <div class="card" style="padding: 1.5rem; position: sticky; top: 100px;">
+                            <h3 style="margin-bottom: 1rem;">Gracious Professionalism</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                                Judges are watching <strong>everywhere</strong>. In the pits, in the stands, field-side.
+                            </p>
+                            <div style="background: #f0fdf4; padding: 1rem; border-radius: 8px;">
+                                <p style="font-size: 0.9rem; color: #166534;">
+                                    <strong>DO:</strong> Cheer for opponents. Help others fix their robots. Say "Thank
+                                    You" to volunteers.
+                                </p>
+                            </div>
+                            <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <p style="font-size: 0.9rem; color: #991b1b;">
+                                    <strong>DON'T:</strong> Yell at refs. Throw controllers. Blame your alliance
+                                    partner.
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                        target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

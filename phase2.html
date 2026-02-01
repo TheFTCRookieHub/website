@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2: The Mid-Season Grind | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 0.3rem;
+            accent-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .pro-tip {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-sm);
+        }
+
+        .pro-tip h4 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <!-- Hero Section -->
+        <section class="section-padding"
+            style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 4rem 0;">
+            <div class="container">
+                <a href="rookie-hub.html"
+                    style="color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 1rem;">←
+                    Back to Hub</a>
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Phase 2: The Mid-Season Grind</h1>
+                <p style="font-size: 1.25rem; color: #94a3b8; max-width: 600px;">Weeks 5-8: Iteration, Reliability, and
+                    Survival</p>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+
+                    <!-- Main Content -->
+                    <div>
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">The "Messy Middle"</h2>
+                            <p style="margin-bottom: 1rem;">
+                                Included in this phase is the reality check. Your first robot version probably works,
+                                but not well enough.
+                                Things might be breaking. This phase is about <strong>Iterative Design</strong>—the
+                                cycle of testing, failing, and improving.
+                            </p>
+                            <div class="pro-tip">
+                                <h4>💡 Golden Rule: Fail Fast</h4>
+                                <p style="font-size: 0.95rem; color: #065f46;">
+                                    Don't spend 3 weeks building the "perfect" mechanism only to find out it doesn't fit
+                                    on the field.
+                                    Build quick prototypes with cardboard or wood first. If it works in cardboard, it
+                                    will work in metal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Unbreakable Reliability</h2>
+                            <p style="margin-bottom: 1.5rem;">
+                                A reliable robot that scores 20 points <strong>every match</strong> beats a robot that
+                                scores 100 points once and dies twice.
+                            </p>
+
+                            <h3 style="margin-bottom: 1rem;">Wiring Hygiene Checklist</h3>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check1">
+                                <label for="check1"><strong>Strain Relief:</strong> Every wire is zip-tied to the frame
+                                    within 2 inches of the connection.</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check2">
+                                <label for="check2"><strong>Ferrules:</strong> Use ferrules on all wires going into
+                                    screw terminals (like the Control Hub).</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check3">
+                                <label for="check3"><strong>Color Coding:</strong> Red to Red, Black to Black. Never
+                                    guess.</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check4">
+                                <label for="check4"><strong>Service Loops:</strong> Leave a small loop of slack wire
+                                    near moving parts/joints.</label>
+                            </div>
+
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Mechanical Hardening</h3>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check5">
+                                <label for="check5"><strong>Threadlocker (Loctite Blue):</strong> Applied to every screw
+                                    that goes into metal (NOT plastic).</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check6">
+                                <label for="check6"><strong>Nyloc Nuts:</strong> Replaced all standard nuts with Nyloc
+                                    nuts where possible.</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check7">
+                                <label for="check7"><strong>Set Screws:</strong> Avoid them on high-torque shafts. Use
+                                    clamping hubs!</label>
+                            </div>
+                        </div>
+
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Notebooking the Chaos</h2>
+                            <p style="margin-bottom: 1rem;">
+                                Judges love seeing the failure. If your intake arm snapped in half, <strong>take a
+                                    picture of it</strong> before fixing it.
+                            </p>
+                            <h3 style="margin-bottom: 1rem;">What to log daily:</h3>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-muted);">
+                                <li><strong>The Problem:</strong> "Intake kept jamming on game piece."</li>
+                                <li><strong>The Idea:</strong> "Try adding a compliant wheel."</li>
+                                <li><strong>The Test:</strong> "Tested with 5 game pieces. 4 worked, 1 jammed."</li>
+                                <li><strong>The Result:</strong> "Better, but needs more speed. Will try higher gear
+                                    ratio."</li>
+                            </ul>
+                        </div>
+
+                        <!-- New Content: Failure Case Study -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem; border-left: 4px solid #ef4444;">
+                            <h2 style="color: #b91c1c; margin-bottom: 1.5rem;">Case Study: The Claw That Failed</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                <strong>Scenario:</strong> Team 9999 built a beautiful 3D printed claw. It worked
+                                perfectly in the lab.
+                                At the first competition, it shattered in Match 2.
+                            </p>
+                            <h4 style="margin-bottom: 0.5rem;">Why it failed:</h4>
+                            <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                                <li>Printed with 10% infill (too weak).</li>
+                                <li>Bolts were tightened too much, cracking the plastic.</li>
+                                <li>No spare parts were packed.</li>
+                            </ul>
+                            <h4 style="margin-bottom: 0.5rem;">The Fix (Iterative Loop):</h4>
+                            <ol style="padding-left: 1.5rem;">
+                                <li><strong>Redesign:</strong> Thicker walls, 50% infill.</li>
+                                <li><strong>Test:</strong> Dropped it on concrete 5 times. It survived.</li>
+                                <li><strong>Document:</strong> Wrote a "Failure Report" in the notebook (Judges LOVED
+                                    this).</li>
+                            </ol>
+                        </div>
+
+                        <!-- New Content: Wiring Deep Dive -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Wiring Standards Deep Dive</h2>
+                            <p style="margin-bottom: 1.5rem;">Bad wiring kills more robots than bad code. Follow these
+                                rules or die.</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">1. Wire Gauge (AWG)</h4>
+                                    <table
+                                        style="width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 1rem;">
+                                        <tr style="background: #f1f5f9;">
+                                            <th style="padding: 0.5rem;">Part</th>
+                                            <th style="padding: 0.5rem;">Min Gauge</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Battery
+                                            </td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">14 AWG
+                                                (Thick)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Motors
+                                            </td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">18 AWG
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Servos
+                                            </td>
+                                            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">22 AWG
+                                                (Thin)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">2. Connector Management</h4>
+                                    <ul style="padding-left: 1.5rem; font-size: 0.95rem;">
+                                        <li style="margin-bottom: 0.5rem;"><strong>XT30:</strong> Yellow connectors for
+                                            power. Never use Tamiya (white/cheap).</li>
+                                        <li style="margin-bottom: 0.5rem;"><strong>JST PH:</strong> The tiny 4-pin
+                                            sensor cables. Treat them gently.</li>
+                                        <li style="margin-bottom: 0.5rem;"><strong>Logic Level Converter:</strong>
+                                            Required if using 5V sensors on 3.3V hub.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Git for Rookies -->
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Code Version Control (Git)</h2>
+                            <p style="margin-bottom: 1rem;">Stop emailing code to yourself. Use GitHub.</p>
+                            <div
+                                style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 8px; font-family: monospace;">
+                                <span style="color: #64748b;">// The "Oh No" Prevention Workflow</span><br><br>
+                                <span style="color: #fca5a5;">git status</span> <span style="color: #64748b;">// What
+                                    did I change?</span><br>
+                                <span style="color: #fca5a5;">git add .</span> <span style="color: #64748b;">// Stage
+                                    all changes</span><br>
+                                <span style="color: #fca5a5;">git commit -m "Fixed intake bug"</span> <span
+                                    style="color: #64748b;">// Save a snapshot</span><br>
+                                <span style="color: #fca5a5;">git push</span> <span style="color: #64748b;">// Upload to
+                                    cloud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside>
+                        <div class="card" style="padding: 1.5rem; position: sticky; top: 100px;">
+                            <h3 style="margin-bottom: 1rem;">Resources</h3>
+                            <ul style="list-style: none;">
+                                <li style="margin-bottom: 0.75rem;">
+                                    <a href="#" style="color: var(--primary); text-decoration: none;">📄 Design Log
+                                        Template</a>
+                                </li>
+                                <li style="margin-bottom: 0.75rem;">
+                                    <a href="https://gm0.org/en/latest/docs/power-and-electronics/wiring.html"
+                                        target="_blank" style="color: var(--primary); text-decoration: none;">⚡ Game
+                                        Manual 0: Wiring Guide</a>
+                                </li>
+                            </ul>
+
+                            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--border);">
+
+                            <h3 style="margin-bottom: 1rem;">Team Morale</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                Mid-season burnout is real. Schedule a "Fun Day" with NO ROBOTS allowed. Go bowling or
+                                watch a movie.
+                                A happy team builds a better robot.
+                            </p>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                        target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
