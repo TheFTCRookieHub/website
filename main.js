@@ -249,4 +249,75 @@ document.addEventListener('DOMContentLoaded', () => {
     if (forumFeed && db) {
         listenForPosts();
     }
+
+    // --- Connect Page Logic ---
+    const connectForm = document.getElementById('connectForm');
+    const connectFeed = document.getElementById('connectFeed');
+
+    if (connectForm && db) {
+        // Handle Submission
+        connectForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('connectorName').value;
+            const role = document.getElementById('connectorRole').value;
+            const location = document.getElementById('connectorLocation').value;
+            const contact = document.getElementById('connectorContact').value;
+            const bio = document.getElementById('connectorBio').value;
+
+            try {
+                await db.collection('team_requests').add({
+                    name,
+                    role,
+                    location,
+                    contact,
+                    bio,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert('Profile posted successfully!');
+                connectForm.reset();
+            } catch (err) {
+                console.error("Error posting profile:", err);
+                alert("Failed to post profile. Try again.");
+            }
+        });
+
+        // Handle Listening
+        db.collection('team_requests').orderBy('createdAt', 'desc').limit(50).onSnapshot((snapshot) => {
+            if (snapshot.empty) {
+                connectFeed.innerHTML = `<div class="card" style="text-align: center; padding: 2rem;">No profiles found yet. Be the first!</div>`;
+                return;
+            }
+
+            let html = '';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+
+                // Color code roles
+                let roleColor = '#2563eb'; // Blue default
+                if (data.role.includes('Builder')) roleColor = '#ea580c'; // Orange
+                if (data.role.includes('Mentor')) roleColor = '#7c3aed'; // Purple
+                if (data.role.includes('Recruiting')) roleColor = '#059669'; // Green
+
+                html += `
+                    <div class="card" style="margin-bottom: 1.5rem; border-left: 4px solid ${roleColor};">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <h3 style="font-size: 1.25rem;">${data.name}</h3>
+                            <span style="background: ${roleColor}20; color: ${roleColor}; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">${data.role}</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                            <span>📍 ${data.location}</span>
+                            <span>📅 ${date}</span>
+                        </div>
+                        <p style="margin-bottom: 1rem; line-height: 1.5;">${data.bio}</p>
+                        <div style="background: #f8fafc; padding: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); font-family: monospace; font-size: 0.9rem;">
+                            📞 ${data.contact}
+                        </div>
+                    </div>
+                `;
+            });
+            connectFeed.innerHTML = html;
+        });
+    }
 });
