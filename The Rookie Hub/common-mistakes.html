@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Rookie Mistakes | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section class="section-padding">
+            <div class="container">
+                <a href="rookie-hub.html" class="btn btn-outline" style="margin-bottom: 2rem;">&larr; Back to Hub</a>
+
+                <span
+                    style="display: inline-block; padding: 0.25rem 0.75rem; background: #fff1f2; color: #e11d48; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">CAUTION</span>
+                <h1 style="font-size: 3rem; margin-bottom: 2rem;">Don't Do This!</h1>
+
+                <div style="display: grid; gap: 2rem; max-width: 900px;">
+
+                    <!-- Hardware Mistakes -->
+                    <div class="card">
+                        <h2 style="color: #e11d48; margin-bottom: 1rem;">Hardware Horrors</h2>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <strong>Using Standard Nuts:</strong> Robots VIBRATE. Standard nuts fall off in 10
+                                seconds.
+                                <br><span style="color: #059669;"><strong>Fix:</strong> ONLY use Nyloc Nuts (the ones
+                                    with the white plastic insert inside).</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <strong>Tiny Screws (Stripping):</strong> Using the wrong size hex key ruins screws
+                                forever.
+                                <br><span style="color: #059669;"><strong>Fix:</strong> Buy high-quality Wera or Bondhus
+                                    hex keys.</span>
+                            </li>
+                            <li>
+                                <strong>No Strain Relief:</strong> Cables plugged directly into the Hub get yanked out
+                                when the robot moves.
+                                <br><span style="color: #059669;"><strong>Fix:</strong> 3D print cable retaining clips
+                                    or simple zip-ties to secure wires to the chassis.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Software Mistakes -->
+                    <div class="card">
+                        <h2 style="color: #e11d48; margin-bottom: 1rem;">Software Slip-ups</h2>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                                <strong>The "Big Bang" Code:</strong> Writing 500 lines of code before testing if the
+                                wheels turn.
+                                <br><span style="color: #059669;"><strong>Fix:</strong> Test small. Make one motor spin.
+                                    Then two. Then drive. Then intake.</span>
+                            </li>
+                            <li>
+                                <strong>"The robot isn't done yet":</strong> Waiting for the mech team to finish
+                                perfectly before coding.
+                                <br><span style="color: #059669;"><strong>Fix:</strong> Program on a spare chassis or
+                                    just a hub with motors on a table.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                        target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
