@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK (Firestore only) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <style>
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--surface-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        #replyText {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            font-family: inherit;
+            min-height: 150px;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        #replyText:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .comment-card {
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .comment-card:hover {
+            border-left-color: var(--primary);
+            background: var(--surface);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link active">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <div class="post-container">
+            <a href="forum.html"
+                style="color: var(--text-muted); display: inline-block; margin-bottom: 2rem; text-decoration: none; font-weight: 500;">
+                ← Back to Forum
+            </a>
+
+            <div id="postLoading" class="card" style="padding: 4rem; text-align: center;">
+                <div class="animate-spin" style="font-size: 2rem; margin-bottom: 1rem;">⚙️</div>
+                <p>Loading discussion...</p>
+            </div>
+
+            <div id="postError" class="card" style="padding: 4rem; text-align: center; display: none;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                <h2 style="margin-bottom: 0.5rem;">Post not found</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">This discussion may have been moved or
+                    deleted.</p>
+                <a href="forum.html" class="btn btn-primary">Return to Forum</a>
+            </div>
+
+            <div id="postContentArea" style="display: none;">
+                <article class="card" style="padding: 3rem; margin-bottom: 4rem; border-top: 4px solid var(--primary);">
+                    <div id="postHeader" style="margin-bottom: 1.5rem;">
+                        <span id="postCategory" class="badge">CATEGORY</span>
+                    </div>
+                    <h1 id="postDisplayTitle"
+                        style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2; font-weight: 800; color: var(--text);">
+                        Post Title
+                    </h1>
+
+                    <div
+                        style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                        <div id="postAvatar" class="avatar">R</div>
+                        <div>
+                            <div id="postDisplayAuthor"
+                                style="font-weight: 700; color: var(--text); font-size: 1.1rem;">Author Name</div>
+                            <div id="postMeta" style="font-size: 0.9rem; color: var(--text-muted);">Posted just now
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="postDisplayContent"
+                        style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); white-space: pre-wrap;">
+                        Post content goes here...
+                    </div>
+                </article>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 id="repliesCount" style="font-size: 1.5rem; font-weight: 700;">Replies (0)</h2>
+                </div>
+
+                <div id="repliesList">
+                    <!-- Replies will be injected here -->
+                </div>
+
+                <div class="card" style="margin-top: 4rem; padding: 3rem; background: var(--surface);">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700;">Join the Discussion</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="replyAuthor" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your
+                            Name / Team</label>
+                        <input type="text" id="replyAuthor" placeholder="e.g. John Doe or Team 12345"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+                    </div>
+                    <textarea id="replyText" placeholder="Write your helpful reply here..."></textarea>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button id="submitReply" class="btn btn-primary"
+                            style="padding: 1rem 2.5rem; font-size: 1rem;">Post Reply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Designed and Built with ⚙️ by the <a
+                        href="https://ftcdragonwarriors.github.io/website/" target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Post.html specific logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            if (!postId) {
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postError').style.display = 'block';
+                return;
+            }
+
+            const db = firebase.firestore();
+
+            try {
+                // Fetch the post
+                const doc = await db.collection('posts').doc(postId).get();
+
+                if (!doc.exists) {
+                    document.getElementById('postLoading').style.display = 'none';
+                    document.getElementById('postError').style.display = 'block';
+                    return;
+                }
+
+                const post = doc.data();
+
+                // Display the post
+                document.getElementById('postDisplayTitle').textContent = post.title;
+                document.getElementById('postCategory').textContent = post.category;
+                document.getElementById('postDisplayAuthor').textContent = post.author || 'Anonymous';
+                document.getElementById('postAvatar').textContent = (post.author || 'R')[0].toUpperCase();
+                document.getElementById('postDisplayContent').textContent = post.content;
+
+                const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+                document.getElementById('postMeta').textContent = `Posted on ${date}`;
+
+                // Fetch replies
+                listenForReplies(postId);
+
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postContentArea').style.display = 'block';
+
+                // Handle reply submission
+                const submitBtn = document.getElementById('submitReply');
+                submitBtn.addEventListener('click', async () => {
+                    const author = document.getElementById('replyAuthor').value.trim() || 'Anonymous';
+                    const content = document.getElementById('replyText').value.trim();
+
+                    if (!content) {
+                        alert('Please enter a reply.');
+                        return;
+                    }
+
+                    try {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Posting...';
+
+                        await db.collection('posts').doc(postId).collection('replies').add({
+                            author,
+                            content,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+
+                        document.getElementById('replyText').value = '';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Reply';
+                    } catch (err) {
+                        console.error('Error posting reply:', err);
+                        alert('Failed to post reply.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Post Reply';
+                    }
+                });
+
+            } catch (err) {
+                console.error('Error loading post:', err);
+                document.getElementById('postLoading').style.display = 'none';
+                document.getElementById('postError').style.display = 'block';
+            }
+        });
+
+        function listenForReplies(postId) {
+            const db = firebase.firestore();
+            db.collection('posts').doc(postId).collection('replies')
+                .orderBy('createdAt', 'asc')
+                .onSnapshot((snapshot) => {
+                    const repliesList = document.getElementById('repliesList');
+                    const repliesCount = document.getElementById('repliesCount');
+
+                    repliesCount.textContent = `Replies (${snapshot.size})`;
+
+                    if (snapshot.empty) {
+                        repliesList.innerHTML = '<p style="color: var(--text-muted); padding: 2rem; text-align: center;">No replies yet. Be the first to join the conversation!</p>';
+                        return;
+                    }
+
+                    let html = '';
+                    snapshot.forEach(doc => {
+                        const reply = doc.data();
+                        const date = reply.createdAt ? new Date(reply.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+
+                        html += `
+                            <div class="card comment-card animate-fade-in">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div class="avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                                        ${(reply.author || 'A')[0].toUpperCase()}
+                                    </div>
+                                    <div style="font-weight: 600;">${reply.author || 'Anonymous'}</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">${date}</div>
+                                </div>
+                                <div style="color: var(--text-muted); line-height: 1.6; white-space: pre-wrap;">${reply.content}</div>
+                            </div>
+                        `;
+                    });
+                    repliesList.innerHTML = html;
+                });
+        }
+    </script>
+</body>
+
+</html>

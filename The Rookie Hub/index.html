@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The FTC Rookie Hub | A Beginner-Friendly FTC Forum</title>
+    <meta name="description" content="A safe, welcoming forum and resource hub for FIRST Tech Challenge rookie teams.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active" title="Home - Main landing page">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-dropdown">
+                        <a href="resources.html" class="nav-link">
+                            Resources <span style="font-size: 0.7rem;">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="resources.html#programming">Programming Resources</a>
+                            <a href="resources.html#cad">CAD & Design Tools</a>
+                            <a href="resources.html#tutorials">Video Tutorials</a>
+                            <a href="resources.html#documentation">Documentation</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="nav-link" title="About - Learn more about The FTC Rookie Hub">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <!-- Hero Section -->
+        <section class="section-padding"
+            style="background-color: var(--surface); border-bottom: 1px solid var(--border);">
+            <div class="container animate-fade-in" style="text-align: center;">
+                <img src="dragon-warriors-logo.png" alt="Dragon Warriors Logo"
+                    style="width: 180px; height: 180px; margin-bottom: 1rem;">
+                <p
+                    style="font-size: 1.3rem; color: var(--text); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 0.02em;">
+                    The <a href="https://ftcdragonwarriors.github.io/website/" target="_blank"
+                        style="color: #dc2626; text-decoration: none; font-weight: 800;">Dragon Warriors</a> <span
+                        style="color: var(--text-muted); font-weight: 600;">(An FTC team)</span> presents
+                </p>
+                <h1
+                    style="font-size: 3rem; font-weight: 800; margin-bottom: 0.75rem; line-height: 1.1; letter-spacing: -0.04em;">
+                    The Ultimate Hub for <br><span style="color: var(--primary);">FTC Rookie Teams</span>
+                </h1>
+                <p
+                    style="font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 1.75rem; line-height: 1.5;">
+                    Providing high-quality resources, technical guides, and a supportive community to help your team
+                    succeed in the FIRST Tech Challenge.
+                </p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1.5rem;">
+                    <a href="rookie-hub.html" class="btn btn-primary"
+                        style="padding: 1.1rem 2.5rem; font-size: 1.05rem;">Get Started</a>
+                    <a href="forum.html" class="btn btn-outline"
+                        style="padding: 1.1rem 2.5rem; font-size: 1.05rem;">Join the Discussion</a>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://www.youtube.com/channel/UCuepMibRqa93RCThIBs1AUg" target="_blank"
+                        class="btn btn-outline"
+                        style="padding: 0.6rem 1.2rem; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        🎥 YouTube
+                    </a>
+                    <a href="https://www.instagram.com/ftcdragon_warriors?igsh=MWJ4cjNnZXg5YzQwdw==" target="_blank"
+                        class="btn btn-outline"
+                        style="padding: 0.6rem 1.2rem; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        📸 Instagram
+                    </a>
+                    <a href="https://ftcdragonwarriors.github.io/website/" target="_blank" class="btn btn-outline"
+                        style="padding: 0.6rem 1.2rem; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        🌐 Website
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="section-padding" style="border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
+                    <div>
+                        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Recent Forum Posts</h2>
+                        <p style="color: var(--text-muted);">See what's happening in the rookie community.</p>
+                    </div>
+                    <a href="forum.html" class="btn btn-outline" style="border: none; padding: 0;">View All Posts <span
+                            style="margin-left: 0.5rem;">→</span></a>
+                </div>
+
+                <div id="recentPostsFeed"
+                    style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: var(--surface); border: 2px dashed var(--border); border-radius: 12px;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;">🚀</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">The community is warming up!</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto;">New posts
+                        from rookie teams will appear here soon. Be the first to start a conversation!</p>
+                    <a href="forum.html" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;">Go to
+                        Forum</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Community Values -->
+        <section class="section-padding" style="background-color: var(--surface);">
+            <div class="container" style="text-align: center;">
+                <h2 style="font-size: 2.25rem; margin-bottom: 4rem;">Our Community Values</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4rem;">
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary);">🤝</div>
+                        <h3 style="margin-bottom: 1rem;">Be Kind</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Every expert was once a beginner. Treat
+                            everyone with respect and patience.</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary);">🙋‍♂️</div>
+                        <h3 style="margin-bottom: 1rem;">Help Rookies</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Share your knowledge freely and lift up
+                            new teams in the community.</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary);">🔑</div>
+                        <h3 style="margin-bottom: 1rem;">No Gatekeeping</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">All questions are welcome. We believe
+                            in open knowledge for everyone.</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary);">📈</div>
+                        <h3 style="margin-bottom: 1rem;">Learning > Winning</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Focus on growth, skill-building, and
+                            the journey of engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="logo">The <span>FTC Rookie</span> Hub</h2>
+                    <p>A safe, welcoming space for the next generation of FTC engineers.</p>
+                    <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                            target="_blank">Dragon Warriors</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="rookie-hub.html">Rookie Hub</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="build-logs.html">Build Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="competition.html">Survival Guide</a></li>
+                        <li><a href="#">Official FTC Site</a></li>
+                        <li><a href="#">Game Manuals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect with Dragon Warriors</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/channel/UCuepMibRqa93RCThIBs1AUg" target="_blank">🎥
+                                YouTube Channel</a></li>
+                        <li><a href="https://www.instagram.com/ftcdragon_warriors?igsh=MWJ4cjNnZXg5YzQwdw=="
+                                target="_blank">📸 Instagram</a></li>
+                        <li><a href="https://ftcdragonwarriors.github.io/website/" target="_blank">🌐 Team Website</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Designed and Built with ⚙️ by the <a
+                        href="https://ftcdragonwarriors.github.io/website/" target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

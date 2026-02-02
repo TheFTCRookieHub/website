@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 3: Competition Prep | The FTC Rookie Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .script-box {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: var(--radius-sm);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--text-muted);
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+
+        .drill-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .drill-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">The <span>FTC Rookie</span> Hub</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+
+                    <div class="nav-dropdown">
+                        <a href="rookie-hub.html" class="nav-link active">Rookie Hub ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="rookie-hub.html"><strong>Dashboard</strong></a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="phase0.html">Phase 0: Before Season</a>
+                            <a href="phase1.html">Phase 1: First 30 Days</a>
+                            <a href="phase2.html">Phase 2: Mid-Season</a>
+                            <a href="phase3.html">Phase 3: Comp Prep</a>
+                            <a href="phase4.html">Phase 4: Game Day</a>
+                            <div style="height: 1px; background: var(--border); margin: 0.25rem 0;"></div>
+                            <a href="game-manuals.html">Game Manuals</a>
+                            <a href="common-mistakes.html">Rookie Mistakes</a>
+                            <a href="team-roles.html">Team Roles</a>
+                        </div>
+                    </div>
+
+                    <a href="connect.html" class="nav-link">Team Finder</a>
+
+                    <div class="nav-dropdown">
+                        <a href="forum.html" class="nav-link">Forum ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="forum.html">All Topics</a>
+                            <a href="forum.html?category=Robot Design & Build">Robot Design</a>
+                            <a href="forum.html?category=Programming">Programming</a>
+                            <a href="forum.html?category=Game Strategy">Strategy</a>
+                        </div>
+                    </div>
+
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <!-- Hero Section -->
+        <section class="section-padding"
+            style="background: linear-gradient(135deg, #4338ca 0%, #312e81 100%); color: white; padding: 4rem 0;">
+            <div class="container">
+                <a href="rookie-hub.html"
+                    style="color: rgba(255,255,255,0.7); text-decoration: none; display: inline-block; margin-bottom: 1rem;">←
+                    Back to Hub</a>
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Phase 3: Competition Prep</h1>
+                <p style="font-size: 1.25rem; color: #a5b4fc; max-width: 600px;">Weeks 9-12: Drive Practice, Judging,
+                    and Scouting</p>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+
+                    <!-- Main Content -->
+                    <div>
+                        <!-- Drive Practice -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">It's Not About the Robot, It's the
+                                Driver</h2>
+                            <p style="margin-bottom: 1.5rem;">
+                                A mediocre robot with an excellent driver will beat an excellent robot with a mediocre
+                                driver.
+                                Aim for at least <strong>10 hours</strong> of stick time before your first comp.
+                            </p>
+
+                            <h3 style="margin-bottom: 1rem;">Drill Menu</h3>
+
+                            <div class="drill-card">
+                                <span class="drill-tag">Solo Drill</span>
+                                <h4 style="margin: 0.5rem 0;">The Ghost Cycle</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">
+                                    Run a full teleop match (2 mins) alone. Count your points. Do this 5 times in a row.
+                                    If your score varies by more than 10%, your robot (or driver) isn't consistent yet.
+                                </p>
+                            </div>
+
+                            <div class="drill-card">
+                                <span class="drill-tag">Chaos Drill</span>
+                                <h4 style="margin: 0.5rem 0;">Obstacle Course</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">
+                                    Scatter random parts/boxes on the field. Drive your cycles while dodging them.
+                                    This simulates defense and crowded fields.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Judging -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="margin-bottom: 1.5rem;">The 5-Minute Pitch</h2>
+                            <p style="margin-bottom: 1rem;">
+                                You have 5 minutes to tell your team's story. Don't wing it. Write a script.
+                            </p>
+
+                            <h3>Basic Script Outline</h3>
+                            <div class="script-box">
+                                (0:00-0:30) Intro: Who you are, team mission, and "The Hook" (something unique).
+
+                                (0:30-2:00) The Robot: Focus on the "Why" not just the "What".
+                                "We chose a claw intake BECAUSE it was more reliable than wheels..."
+
+                                (2:00-3:00) Programming/Control: Mention sensors, autonomous paths, and unique code
+                                features.
+
+                                (3:00-4:00) Outreach/Connect: How did you help your community? Who did you learn from?
+
+                                (4:00-5:00) Conclusion: Lessons learned, future goals, and Thank You.
+                            </div>
+
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                <strong>Tip:</strong> Rehearse until you don't need note cards. If you forget a line,
+                                keep going.
+                            </p>
+                        </div>
+
+                        <!-- Scouting -->
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Scouting Wins Tournaments</h2>
+                            <p style="margin-bottom: 1rem;">
+                                You need to know who is good so you can pick them (or defend against them).
+                            </p>
+                            <h3>The "Paper Slip" Method</h3>
+                            <p>
+                                Don't overcomplicate it with an app for your first year. Print 40 small slips of paper
+                                with:
+                            </p>
+                            <ul style="padding-left: 1.5rem; margin-top: 1rem; color: var(--text-muted);">
+                                <li>Team Number</li>
+                                <li>Can they climb? (Yes/No)</li>
+                                <li>Autonomous Score (approx.)</li>
+                                <li>TeleOp Score (approx.)</li>
+                                <li>Reliability (Did they break?)</li>
+                            </ul>
+                        </div>
+
+                        <!-- New Content: Driver Selection Bootcamp -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Driver Selection Bootcamp</h2>
+                            <p style="margin-bottom: 1.5rem;">Don't pick the captain's best friend. Pick the best
+                                driver. Run these trials.</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div style="border: 1px solid var(--border); padding: 1rem; border-radius: 4px;">
+                                    <h4 style="margin-bottom: 0.5rem;">Trail 1: The Sprints</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                        Drive from one corner to the opposite corner and back. 10 times.<br>
+                                        <strong>Goal:</strong> Straight lines. No drifting. < 20 seconds. </p>
+                                </div>
+                                <div style="border: 1px solid var(--border); padding: 1rem; border-radius: 4px;">
+                                    <h4 style="margin-bottom: 0.5rem;">Trial 2: The Precision Park</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                        Place tape on the floor. Driver must stop with wheels exactly on the tape.<br>
+                                        <strong>Goal:</strong> Control at low speeds.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Scouting Template -->
+                        <div class="card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Scouting Database Template</h2>
+                            <p style="margin-bottom: 1rem;">Set up a Google Sheet with these EXACT columns:</p>
+
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                                    <tr style="background: #2563eb; color: white;">
+                                        <th style="padding: 0.5rem;">Match #</th>
+                                        <th style="padding: 0.5rem;">Team #</th>
+                                        <th style="padding: 0.5rem;">Auto Pts</th>
+                                        <th style="padding: 0.5rem;">TeleOp Pts</th>
+                                        <th style="padding: 0.5rem;">Endgame?</th>
+                                        <th style="padding: 0.5rem;">Notes</th>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border);">
+                                        <td style="padding: 0.5rem;">Q1</td>
+                                        <td style="padding: 0.5rem;">12345</td>
+                                        <td style="padding: 0.5rem;">20</td>
+                                        <td style="padding: 0.5rem;">45</td>
+                                        <td style="padding: 0.5rem;">Yes (Hang)</td>
+                                        <td style="padding: 0.5rem;">Fast but tippy.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border);">
+                                        <td style="padding: 0.5rem;">Q1</td>
+                                        <td style="padding: 0.5rem;">98765</td>
+                                        <td style="padding: 0.5rem;">0</td>
+                                        <td style="padding: 0.5rem;">10</td>
+                                        <td style="padding: 0.5rem;">No</td>
+                                        <td style="padding: 0.5rem; color: #dc2626;">Disconnected for 30s.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- New Content: Hard Judging Questions -->
+                        <div class="card" style="padding: 2.5rem;">
+                            <h2 style="margin-bottom: 1.5rem;">Mock Judging: The "Mean" Judge</h2>
+                            <p style="margin-bottom: 1rem;">Practice these tough questions. Don't let them stump you.
+                            </p>
+                            <ul style="padding-left: 1.5rem; line-height: 1.6; color: var(--text-muted);">
+                                <li>"I see you used a servo here. Calculate the torque required to lift this arm." (Math
+                                    check)</li>
+                                <li>"Who wrote this code? Can you explain line 45?" (Anti-plagiarism check)</li>
+                                <li>"You mentioned outreach. How many people did you ACTUALLY impact?" (Impact
+                                    verification)</li>
+                                <li>"If you had $1000 more, what would you change?" (Vision check)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside>
+                        <div class="card" style="padding: 1.5rem; position: sticky; top: 100px;">
+                            <h3 style="margin-bottom: 1rem;">Mock Judging</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                                Grab a parent or teacher who knows nothing about robots. Have them interview you.
+                            </p>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Common Questions:</h4>
+                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
+                                <li>"What was your biggest failure?"</li>
+                                <li>"Who did the programming?"</li>
+                                <li>"How did you fund your team?"</li>
+                                <li>"What is Gracious Professionalism to you?"</li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2026 The FTC Rookie Hub. All rights reserved.</p>
+                <p class="credit-text">Made by the <a href="https://ftcdragonwarriors.github.io/website/"
+                        target="_blank">Dragon Warriors</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
