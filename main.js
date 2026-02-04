@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === postModal) toggleModal(false);
     });
 
-    let currentCategory = 'All Topics';
+    let currentCategory = new URLSearchParams(window.location.search).get('category') || 'All Topics';
+    let forumListenerUnsubscribe = null;
 
     const renderEmptyState = () => {
         if (forumFeed) {
@@ -76,8 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const renderPost = (post) => {
-        const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now';
+    const renderPost = (post, replyCount = 0) => {
+        let date = 'Just now';
+        if (post.createdAt) {
+            const d = new Date(post.createdAt.seconds * 1000);
+            date = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+        }
 
         // Check if user can delete this post (exclusively session-based)
         const myPosts = JSON.parse(sessionStorage.getItem('myPosts') || '[]');
@@ -92,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 🗑️
             </button>
         ` : '';
+
+        const replyText = replyCount === 1 ? '1 reply' : `${replyCount} replies`;
 
         return `
             <div class="card animate-fade-in" style="margin-bottom: 1.5rem; padding: 2rem; border-left: 4px solid var(--primary); position: relative;">
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${post.content}
                 </p>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); pt: 1rem; margin-top: 1rem; padding-top: 1rem;">
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">0 replies</span>
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">${replyText}</span>
                     <a href="post.html?id=${post.id}" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: none;">Read More →</a>
                 </div>
             </div>
@@ -145,25 +152,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const listenForPosts = () => {
         if (!db || !forumFeed) return;
 
-        let query = db.collection('posts').orderBy('createdAt', 'desc');
-        if (currentCategory !== 'All Topics') {
-            query = query.where('category', '==', currentCategory);
+        // Unsubscribe from previous listener if it exists
+        if (forumListenerUnsubscribe) {
+            forumListenerUnsubscribe();
         }
 
-        query.onSnapshot((snapshot) => {
+        // Fetch all posts ordered by date (simplest query, usually no index needed)
+        // We filter client-side to avoid Index requirements for where+orderBy
+        let query = db.collection('posts').orderBy('createdAt', 'desc');
+
+        forumListenerUnsubscribe = query.onSnapshot(async (snapshot) => {
             if (snapshot.empty) {
                 renderEmptyState();
                 return;
             }
 
             let html = '';
-            snapshot.forEach((doc) => {
+            let hasPosts = false;
+
+            // Process posts sequentially to fetch reply counts
+            for (const doc of snapshot.docs) {
                 const post = { id: doc.id, ...doc.data() };
-                html += renderPost(post);
-            });
-            forumFeed.innerHTML = html;
+
+                // Client-side filtering
+                if (currentCategory === 'All Topics' || post.category === currentCategory) {
+                    // Fetch reply count for this post
+                    try {
+                        const repliesSnapshot = await db.collection('posts').doc(post.id).collection('replies').get();
+                        const replyCount = repliesSnapshot.size;
+                        html += renderPost(post, replyCount);
+                    } catch (error) {
+                        console.error(`Error fetching replies for post ${post.id}:`, error);
+                        html += renderPost(post, 0);
+                    }
+                    hasPosts = true;
+                }
+            }
+
+            if (!hasPosts) {
+                renderEmptyState();
+            } else {
+                forumFeed.innerHTML = html;
+            }
         }, (error) => {
             console.error("Error fetching posts:", error);
+            // Fallback for UI
+            forumFeed.innerHTML = `<div class="card" style="padding: 2rem; color: red;">Error loading posts. Please check console.</div>`;
         });
     };
 
@@ -229,6 +263,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Forum Category Interaction
     const categoryBtns = document.querySelectorAll('.category-btn');
     categoryBtns.forEach(btn => {
+        // Set initial active state based on URL param
+        if (btn.textContent.trim() === currentCategory) {
+            btn.classList.add('active');
+            btn.style.background = '#eff6ff';
+            btn.style.color = 'var(--primary)';
+            btn.style.fontWeight = '600';
+        } else {
+            btn.classList.remove('active');
+            btn.style.background = 'white';
+            btn.style.color = 'var(--text-muted)';
+            btn.style.fontWeight = '500';
+        }
+
         btn.addEventListener('click', () => {
             categoryBtns.forEach(b => {
                 b.classList.remove('active');
@@ -242,12 +289,55 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.fontWeight = '600';
 
             currentCategory = btn.textContent.trim();
+            // Update URL without reloading
+            const newUrl = new URL(window.location);
+            if (currentCategory === 'All Topics') {
+                newUrl.searchParams.delete('category');
+            } else {
+                newUrl.searchParams.set('category', currentCategory);
+            }
+            window.history.pushState({}, '', newUrl);
+
             listenForPosts();
         });
     });
 
     if (forumFeed && db) {
         listenForPosts();
+    }
+
+    // --- Homepage Recent Posts Sync ---
+    const recentPostsFeed = document.getElementById('recentPostsFeed');
+    if (recentPostsFeed && db) {
+        db.collection('posts').orderBy('createdAt', 'desc').limit(3).onSnapshot(async (snapshot) => {
+            if (snapshot.empty) return; // Keep default placeholder if empty
+
+            let html = '<div style="display: grid; gap: 1.5rem; text-align: left;">';
+
+            // Process posts sequentially to fetch reply counts
+            for (const doc of snapshot.docs) {
+                const post = { id: doc.id, ...doc.data() };
+
+                // Fetch reply count for this post
+                try {
+                    const repliesSnapshot = await db.collection('posts').doc(post.id).collection('replies').get();
+                    const replyCount = repliesSnapshot.size;
+                    html += renderPost(post, replyCount);
+                } catch (error) {
+                    console.error(`Error fetching replies for post ${post.id}:`, error);
+                    html += renderPost(post, 0);
+                }
+            }
+
+            html += '</div>';
+            // Add a "View Forum" button at the bottom
+            html += `
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="forum.html" class="btn btn-primary">Go to Forum</a>
+                </div>
+            `;
+            recentPostsFeed.innerHTML = html;
+        });
     }
 
     // --- Connect Page Logic ---
